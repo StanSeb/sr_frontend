@@ -1,13 +1,13 @@
 <template>
   <div id="nav">
-      <router-link to="/" id="logo">Sveriges Radio Lista</router-link>
+      <router-link to="/" id="logo">Sveriges Radio<br>Lista</router-link>
     <div class="routes">
-      <router-link to="/channels">Kanaler</router-link>
-      <router-link to="/programs">Program</router-link>
-      <router-link to="/favorites">Favoriter</router-link>
-      <router-link to="/friends">Vänner</router-link>
+      <router-link to="/channels" id="channels" class="route">Kanaler</router-link>
+      <router-link to="/programs" id="programs" class="route">Program</router-link>
+      <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link>
+      <router-link to="/friends" id="friends" class="route">Vänner</router-link>
     </div>
-    <input type="text">
+    <input type="text" placeholder="Sök" id="searchbar">
     <div class="buttons">
       <button class="signup">Sign up</button>
       <button class="login">Login</button>
@@ -16,6 +16,11 @@
   </div>
   <router-view />
 </template>
+
+<script>
+  
+</script>
+
 
 <style>
 #app {
@@ -38,13 +43,28 @@ body {
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  align-items: center;
 }
 
 #logo {
   text-decoration: none;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   color: black;
+}
+
+.routes {
+  margin-left: 50px;
+}
+
+.route {
+  margin-right: 100px;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
 }
 
 </style>

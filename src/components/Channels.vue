@@ -18,4 +18,5 @@ export default {
     margin: 0 auto;
     justify-content: center;
 }
+
 </style>

@@ -10,11 +10,10 @@ export default {
 }
 </script>
 
-<style>
-.programs-container {
-    background-color: white;
-    width: 75%;
-    margin: 0 auto;
-    justify-content: center;
+<style scoped>
+
+body {
+    background-color: rgb(116, 116, 116);
 }
+
 </style>
