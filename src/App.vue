@@ -1,28 +1,50 @@
 <template>
   <div id="nav">
+      <router-link to="/" id="logo">Sveriges Radio Lista</router-link>
+    <div class="routes">
+      <router-link to="/channels">Kanaler</router-link>
+      <router-link to="/programs">Program</router-link>
+      <router-link to="/favorites">Favoriter</router-link>
+      <router-link to="/friends">Vänner</router-link>
+    </div>
+    <input type="text">
+    <div class="buttons">
+      <button class="signup">Sign up</button>
+      <button class="login">Login</button>
+      <button class="logout">Logout</button>
+    </div>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: black;
+  background-color: #f3f3f3;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f3f3;
 }
 
 #nav {
-  padding: 30px;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
-#nav a {
+#logo {
+  text-decoration: none;
   font-weight: bold;
-  color: #2c3e50;
+  font-size: 30px;
+  color: black;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
