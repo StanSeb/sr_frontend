@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-      <router-link to="/" id="logo">Sveriges Radio<br>Lista</router-link>
+    <router-link to="/" id="logo"><img src="./assets/Sverigesradio_ppt.png"/><br>listan</router-link>
     <div class="routes">
       <router-link to="/channels" id="channels" class="route">Kanaler</router-link>
       <router-link to="/programs" id="programs" class="route">Program</router-link>
@@ -50,9 +50,16 @@ body {
 
 #logo {
   text-decoration: none;
-  font-weight: bold;
-  font-size: 20px;
   color: black;
+  font-size: 20px;
+  font-family: cursive;
+  width: 10%;
+}
+
+#logo img {
+  margin: 0px;
+  width: 100%;
+  height: auto;
 }
 
 .routes {
@@ -65,6 +72,13 @@ body {
   font-weight: bold;
   color: black;
   font-size: 18px;
+}
+
+#searchbar {
+  outline: none;
+  font-size: 15px;
+  border: 1px solid black;
+  font-family: Avenir, sans-serif;
 }
 
 </style>
