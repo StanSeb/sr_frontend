@@ -5,7 +5,7 @@ export default createStore({
 
   state: {
     channels: String,
-    channelByID: String
+    channelByID: String,
     categories : String,
     programsByCategoryId : String,
   },
@@ -17,7 +17,7 @@ export default createStore({
 
     setProgramsByChannelID(state, payload) {
       state.channelByID = payload;
-    }
+    },
     setCategories(state, payload){
       state.categories = payload;
     },
@@ -41,7 +41,7 @@ export default createStore({
           console.log(response.data)
           this.commit("setProgramsByChannelID", response.data)
       })
-    }
+    },
     async fetchCategories(){
       await axios.get("http://localhost:3000/api/rest/categories")
       .then(response => {
@@ -63,10 +63,7 @@ export default createStore({
     },
     getProgramsByCategoryId(state){
       return state.programsByCategoryId
-    }
-  },
-
-  getters: {
+    },
     getChannels(state) {
       return state.channels
     },
@@ -74,7 +71,8 @@ export default createStore({
     getProgramsByChannelID(state) {
       return state.channelByID;
     }
-  },
+  },    
+
 
   modules: {
   }
