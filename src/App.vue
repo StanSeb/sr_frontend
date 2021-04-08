@@ -2,10 +2,18 @@
   <div id="nav">
     <router-link to="/" id="logo"><img src="./assets/Sverigesradio_ppt.png"/><br>listan</router-link>
     <div class="routes">
-      <router-link to="/channels" id="channels" class="route">Kanaler</router-link>
-      <router-link to="/programs" id="programs" class="route">Program</router-link>
-      <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link>
-      <router-link to="/friends" id="friends" class="route">Vänner</router-link>
+      <div class="channel-container">
+       <router-link to="/channels" id="channels" class="route">Kanaler</router-link>
+      </div>
+      <div class="program-container">
+        <router-link to="/categories" id="categories" class="route">Program</router-link>
+      </div>
+      <div class="favorites-container">
+        <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link>
+      </div>
+      <div class="friends-container">
+        <router-link to="/friends" id="friends" class="route">Vänner</router-link>
+      </div>
     </div>
     <input type="text" placeholder="Sök" id="searchbar">
     <div class="buttons">
@@ -18,6 +26,7 @@
 </template>
 
 <script>
+
   
 </script>
 
@@ -64,6 +73,14 @@ body {
 
 .routes {
   margin-left: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.routes img{
+  width: 18px;
+  height: auto;
+  margin-right: 100px;
 }
 
 .route {
@@ -72,6 +89,10 @@ body {
   font-weight: bold;
   color: black;
   font-size: 18px;
+}
+
+.program-container {
+  display: flex;
 }
 
 #searchbar {
