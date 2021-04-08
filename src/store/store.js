@@ -8,13 +8,13 @@ export default createStore({
     channelByID: String,
     categories : String,
     programsByCategoryId : String,
+    programsBySearch : String,
   },
 
   mutations: {
     setChannels(state, payload) {
       state.channels = payload;
     },
-
     setProgramsByChannelID(state, payload) {
       state.channelByID = payload;
     },
@@ -24,9 +24,20 @@ export default createStore({
     setProgramsByCategoryId(state,payload){
       state.programsByCategoryId = payload;
     },
+    setProgramsBySearch(state, payload){
+      state.programsBySearch = payload;
+    }
   },
 
   actions: {
+
+    async fetchProgramsBySearch(store, input){
+      await axios.get("http://localhost:3000/api/rest/programs/" + input)
+      .then(response => {
+        this.commit("setProgramsBySearch", response.data)
+      })
+    },
+
     async fetchChannels() {
       await axios.get("http://localhost:3000/api/rest/channels")
         .then(response => {
@@ -58,6 +69,10 @@ export default createStore({
   },
 
   getters: {
+    getProgramsBySearch(state){
+      return state.programsBySearch
+    },
+
     getCategories(state){
       return state.categories
     },
