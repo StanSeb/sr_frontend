@@ -10,8 +10,7 @@ export default createStore({
     password:String,
     name:String,
     lastName:String,
-    loggedInUser:null
-
+    loggedInUser:null,
     channels: String,
     channelByID: String,
     categories : String,
@@ -54,7 +53,7 @@ export default createStore({
     },
     async actionWithValue(store, data){
       console.log(data)
-    }
+    },
 
     async fetchProgramsBySearch(store, input){
       await axios.get("http://localhost:3000/api/rest/programs/" + input)
@@ -92,12 +91,6 @@ export default createStore({
       })
     },
   },
-  getters: {
-    getFavoritesList(state){
-      return state.favoritesList
-    }
-
-  },
 
   getters: {
     getProgramsBySearch(state){
@@ -116,6 +109,9 @@ export default createStore({
 
     getProgramsByChannelID(state) {
       return state.channelByID;
+    },
+    getFavoritesList(state){
+      return state.favoritesList
     }
   },    
 
