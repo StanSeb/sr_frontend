@@ -26,7 +26,6 @@ export default {
 
   methods:{
     path(channelID){
-      console.log(channelID);
       this.$store.dispatch("fetchChannelsByID", channelID)
       this.$router.push("/programs")
    }

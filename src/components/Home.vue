@@ -1,26 +1,43 @@
 <template>
   <div class="home-container">
     <div class="welcome">
-      <h1>Välkommen till</h1>
       <div class="image">
         <img src="../assets/Sverigesradio_ppt.png" />
         <p>listan</p>
       </div>
     </div>
-    <div class="channels-live">
-      <audio controls :src="channelUrl" type="audio/mp3"></audio>
+    <div class="channels-container">
+      <ul v-for="(channelItem, index) in getChannels" :key="index">
+        <li>
+          <img :src="channelItem.image" />
+          <div class="channel-text">
+            <h2>{{ channelItem.name }}</h2>
+            <p>{{ channelItem.tagline }}</p>
+          </div>
+          <div class="channels-live">
+            <audio
+              controls
+              :src="channelItem.audioUrl"
+              type="audio/mp3"
+            ></audio>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    getChannels() {
+      return this.$store.getters.getChannels;
+    },
+  },
 
-    data(){
-        return {
-            channelUrl: "http://sverigesradio.se/topsy/direkt/srapi/132.mp3",
-        }
-    }
+  mounted() {
+    this.$store.dispatch("fetchChannels");
+  },
 };
 </script>
 
@@ -39,13 +56,11 @@ export default {
 .welcome {
   margin: 0 auto;
   display: block;
-}
-
-h1 {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .image {
+  margin-top: 50px;
   font-size: 50px;
   color: black;
   font-family: cursive;
@@ -64,6 +79,23 @@ h1 {
 }
 
 audio {
-    outline: none;
+  outline: none;
 }
+
+.channels-container {
+ display: block;
+ margin-right: 50px;
+}
+
+.channels-container ul li {
+  list-style: none;
+  margin: 0 auto;
+  display: flex;
+}
+
+.channels-container ul li img{
+  width: 10%;
+  height: 10%;
+}
+
 </style>

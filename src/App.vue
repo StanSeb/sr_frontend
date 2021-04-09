@@ -1,40 +1,20 @@
 <template>
   <div id="nav">
-    <router-link to="/home" id="logo"
-      ><img src="./assets/Sverigesradio_ppt.png" /><br />listan</router-link
-    >
+    <router-link to="/home" id="logo">
+      <img src="./assets/Sverigesradio_ppt.png" /><br />listan</router-link>
     <div class="routes">
       <div class="channel-container">
-        <router-link to="/channels" id="channels" class="route"
-          >Kanaler</router-link
-        >
+        <router-link to="/channels" id="channels" class="route">Kanaler</router-link>
       </div>
       <div class="program-container">
-        <router-link to="/categories" id="categories" class="route"
-          >Program</router-link
-        >
+        <router-link to="/categories" id="categories" class="route">Program</router-link>
       </div>
       <div class="favorites-container">
-        <router-link to="/favorites" id="favorites" class="route"
-          >Favoriter</router-link
-        >
+        <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link >
       </div>
       <div class="friends-container">
-        <router-link to="/friends" id="friends" class="route"
-          >Vänner</router-link
-        >
+        <router-link to="/friends" id="friends" class="route">Vänner</router-link>
       </div>
-      <router-link to="/channels" id="channels" class="route"
-        >Kanaler</router-link
-      >
-      <router-link to="/programs" id="programs" class="route"
-        >Program</router-link
-      >
-      <router-link to="/favorites" id="favorites" class="route"
-        >Favoriter</router-link
-      >
-      <router-link to="/friends" id="friends" class="route">Vänner</router-link>
-      <h4 v-if="isLoggedIn">Is logged in: {{ loggedInUser.firstName }}</h4>
     </div>
 
     <input
@@ -45,22 +25,18 @@
       id="searchbar"
     />
 
-    <input type="text" v-model="search" placeholder="sök" id="searchbar" />
     <div class="buttons">
       <button>
-        <router-link to="/register" id="register" class="registerRoute"
-          >sign up</router-link
-        >
+        <router-link to="/register" id="register" class="registerRoute">sign up</router-link>
       </button>
       <button>
-        <router-link to="/login" id="login" class="loginRoute"
-          >Login</router-link
-        >
+        <router-link to="/login" id="login" class="loginRoute">Login</router-link>
       </button>
       <button class="logout" @click="logout">Logout</button>
     </div>
   </div>
   <router-view />
+
   <div id="search" v-if="input">
     <h1>Sökresultat för: "{{ input }}"</h1>
     <h4>{{ getProgramsBySearch.length }} träffar</h4>
@@ -81,7 +57,7 @@ export default {
       input: "",
     };
   },
-  
+
   computed: {
     getProgramsBySearch() {
       return this.$store.getters.getProgramsBySearch;
@@ -122,7 +98,6 @@ export default {
     }
   },
 };
-
 </script>
 
 <style>
@@ -213,12 +188,13 @@ body {
   width: 50px;
   height: 50px;
 }
-ul {
+
+#search ul {
   list-style-type: none;
   padding: 0;
 }
-#search li,
-h1 {
+
+#search li h1 {
   display: inline-block;
   padding: 15px;
   margin: 10px;
