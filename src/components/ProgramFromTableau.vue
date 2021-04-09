@@ -7,10 +7,12 @@
     <div id = "program-info">
         <ul v-for="(channelItem, index) in getProgramsFromTableauyID" :key="index">
             <li>
+                <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
+           
                 {{channelItem.responsibleeditor}} <br>
                 <img :src="channelItem.programimage"/>
                 {{channelItem.name}} <br>
-                {{channelItem.description}} <br> 
+                
                 {{channelItem.programurl}}  
             </li>
         </ul>
@@ -36,11 +38,21 @@ export default {
       path(){
         this.$router.push("/programs")
       },
+     DescriptionByProgramId(programId){
+       this.$store.dispatch("fetchDescriptionByProgramId", programId);
+      this.$router.push("/description")
+     } 
   }
 }
 </script>
 
 <style scoped>
+#info{
+  width: 30px;
+  height: 30px;
+  display: flex-end;
+  justify-content:right;
+}
 
 .programsFromTableau-container {
     background-color: white;

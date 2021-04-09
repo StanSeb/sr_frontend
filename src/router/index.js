@@ -9,6 +9,7 @@ import ProgramFromTableau from '../components/ProgramFromTableau';
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 import ProgramSearch from "../views/ProgramSearch.vue";
+import Description from "../views/Description.vue";
 
 const routes = [
   {
@@ -60,6 +61,11 @@ const routes = [
     path:"/search",
     name: "ProgramSearch",
     component: ProgramSearch
+  },
+  {
+    path:"/description",
+    name: "Description",
+    component: Description
   },
 ]
 

@@ -16,6 +16,7 @@ export default createStore({
     programsByCategoryId : String,
     programsFromTableauyID : String,
     programsBySearch : String,
+    descriptionByProgramId: String,
   },
 
   mutations: {
@@ -45,6 +46,9 @@ export default createStore({
     },
     setProgramsBySearch(state, payload){
       state.programsBySearch = payload;
+    },
+    setDescriptionByProgramId(state, payload){
+      state.descriptionByProgramId = payload;
     }
   },
   
@@ -57,6 +61,13 @@ export default createStore({
     },
     async actionWithValue(store, data){
       console.log(data)
+    },
+
+    async fetchDescriptionByProgramId(store, programId){
+      await axios.get("http://localhost:3000/api/rest/description/" + programId)
+      .then(response => {
+        this.commit("setDescriptionByProgramId", response.data)
+      })
     },
 
     async fetchProgramsBySearch(store, input){
@@ -106,6 +117,10 @@ export default createStore({
   },
 
   getters: {
+    getDescriptionByProgramId(state){
+      return state.descriptionByProgramId
+    },
+
     getProgramsBySearch(state){
       return state.programsBySearch
     },
@@ -124,7 +139,6 @@ export default createStore({
     },
     getProgramsFromTableauyID(state){
       return state.programsFromTableauyID;
-    },
     },
     getFavoritesList(state){
       return state.favoritesList
