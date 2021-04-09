@@ -4,6 +4,14 @@ import axios from 'axios'
 export default createStore({
 
   state: {
+    
+    favoritesList:[],
+    email:String,
+    password:String,
+    name:String,
+    lastName:String,
+    loggedInUser:null
+
     channels: String,
     channelByID: String,
     categories : String,
@@ -12,6 +20,14 @@ export default createStore({
   },
 
   mutations: {
+
+    setFavorites(state, payload){
+      state.favoritesList=payload;
+    },
+    setLoggedInUser(state, user){
+     state.loggedInUser = user
+
+    },
     setChannels(state, payload) {
       state.channels = payload;
     },
@@ -30,6 +46,15 @@ export default createStore({
   },
 
   actions: {
+    async fetchFavoritesList(){
+      await axios.get("http://localhost:3000/api/auth/favorites")
+      .then(response=>{
+        this.commit("setFavorites",response.data)
+      })
+    },
+    async actionWithValue(store, data){
+      console.log(data)
+    }
 
     async fetchProgramsBySearch(store, input){
       await axios.get("http://localhost:3000/api/rest/programs/" + input)
@@ -66,6 +91,12 @@ export default createStore({
         this.commit("setProgramsByCategoryId", response.data)
       })
     },
+  },
+  getters: {
+    getFavoritesList(state){
+      return state.favoritesList
+    }
+
   },
 
   getters: {

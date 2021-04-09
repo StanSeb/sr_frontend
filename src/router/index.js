@@ -5,6 +5,8 @@ import Channels from "../components/Channels.vue";
 import Favorites from "../components/Favorites.vue";
 import Friends from "../components/Friends.vue";
 import Programs from "../components/Programs.vue";
+import Login from "../components/Login.vue";
+import Register from "../components/Register.vue"
 
 const routes = [
   {
@@ -36,6 +38,16 @@ const routes = [
     path: "/programs",
     name: "Programs",
     component: Programs
+  },
+  {
+    path:"/login",
+    name: "Login",
+    component: Login
+  },
+  {
+    path:"/register",
+    name: "Register",
+    component: Register
   },
 ]
 
