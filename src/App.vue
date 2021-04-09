@@ -25,7 +25,7 @@
     </div>
   </div>
   <router-view />
-  <div v-if="input">
+  <div id="search" v-if="input">
     <h1>Sökresultat för: "{{input}}"</h1> 
     <h4>{{getProgramsBySearch.length}} träffar</h4>
     <ul v-for="(program, index) in getProgramsBySearch" :key="index">
@@ -131,7 +131,7 @@ body {
   border-radius: 5px;
   padding: 10px;
 }
-img{
+#search img{
   width:50px;
   height:50px;
   } 
@@ -139,7 +139,7 @@ img{
   list-style-type: none;
   padding: 0;
 }
-li, h1 {
+#search li, h1 {
   display: inline-block;
   padding:15px;
   margin:10px;
