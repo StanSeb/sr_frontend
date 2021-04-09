@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <router-link to="/" id="logo"><img src="./assets/Sverigesradio_ppt.png"/><br>listan</router-link>
+    <router-link to="/home" id="logo"><img src="./assets/Sverigesradio_ppt.png"/><br>listan</router-link>
     <div class="routes">
       <div class="channel-container">
        <router-link to="/channels" id="channels" class="route">Kanaler</router-link>
@@ -131,6 +131,17 @@ body {
   border-radius: 5px;
   padding: 10px;
 }
+
+.main-container {
+  background-color: white;
+  width: 75%;
+  height: 200px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  border-top: 1px solid rgb(223, 223, 223);
+  display: block;
+}
+
 #search img{
   width:50px;
   height:50px;

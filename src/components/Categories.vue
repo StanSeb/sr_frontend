@@ -63,6 +63,7 @@ export default {
 </script>
 
 <style scoped>
+
 .category-container {
   background-color: white;
   width: 75%;

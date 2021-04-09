@@ -3,9 +3,9 @@
       <h1>Kanaler</h1>
       <ul v-for="(channelItem, index) in getChannels" :key="index">
         <li @click="path(channelItem.id)">
-          {{channelItem.name}} <br>
-          {{channelItem.tagline}}<br> 
           <img :src="channelItem.image"/>
+          <h2>{{channelItem.name}}</h2>
+          <p>{{channelItem.tagline}}</p>
         </li>
       </ul>
   </div>
@@ -40,6 +40,10 @@ export default {
     width: 75%;
     margin: 0 auto;
     justify-content: center;
+}
+
+h1 {
+  padding-top: 20px;
 }
 
 ul li {
