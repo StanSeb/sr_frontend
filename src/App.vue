@@ -6,19 +6,56 @@
       <router-link to="/programs" id="programs" class="route">Program</router-link>
       <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link>
       <router-link to="/friends" id="friends" class="route">Vänner</router-link>
+      <h4 v-if="isLoggedIn">Is logged in: {{loggedInUser.firstName}}</h4>
     </div>
-    <input type="text" placeholder="Sök" id="searchbar">
+    <input type="text" v-model="search" placeholder="sök" id="searchbar">
     <div class="buttons">
-      <button class="signup">Sign up</button>
-      <button class="login">Login</button>
-      <button class="logout">Logout</button>
+      
+      <button><router-link to="/register" id="register" class="registerRoute">sign up</router-link></button>
+      <button><router-link to="/login" id="login" class="loginRoute">Login</router-link></button>
+      <button class="logout" @click="logout">Logout</button>
     </div>
   </div>
   <router-view />
 </template>
 
 <script>
+  export default{
+    async mounted(){
+
+      let user = await fetch('/api/auth/whoami')
+      try{
+        user=await user.json()
+        this.$store.commit('setLoggedInUser', user)
+        console.log('user')
+      }catch{
+        console.log('not logged in');
+      }
+    },
+    computed: {
+      loggedInUser(){
+        return this.$store.state.loggedInUser
+
+      },
+      isLoggedIn(){
+        return this.loggedInUser !=null
+
+      },
+    },
+       methods: {
+       async logout(){
+            //tells backend to forget about us
+            fetch('/logout', {mode:'no-cors'})
+
+            //removes logged in user from "store"
+            this.$store.commit('setLoggedInUser',null)
+           alert("you have logged out")
+            
+        },
+       }
   
+
+  }
 </script>
 
 
