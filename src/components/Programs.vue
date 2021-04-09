@@ -1,23 +1,32 @@
 <template>
   <div class="programs-container">
-      <h1>Program</h1>
-      <div id = "program-info">
-        <ul v-for="(channelItem, index) in getProgramsByChannelID" :key="index">
-           <li>
-            
-             {{channelItem.starttimeutc}} <br>
-             {{channelItem.title}} <br> 
-           </li>
-       </ul>
-      </div>
+     <div class="contentHolder">
+      <h1>Tablå</h1>
+      <button class="program-btn" @click="path">Programs</button>
+    </div>
+    <div id = "program-info">
+      <ul v-for="(channelItem, index) in getProgramsByChannelID" :key="index">
+        <li>
+          {{channelItem.starttimeutc}} <br>
+          {{channelItem.title}} <br> 
+        </li>
+        </ul>
+    </div>
   </div>
 </template>
 
 <script>
+
 export default {
   computed:{
     getProgramsByChannelID(){
       return this.$store.getters.getProgramsByChannelID;
+    }
+  },
+
+  methods:{
+    path(){
+      this.$router.push("/ProgramFromTableau")
     }
   },
 }
@@ -39,6 +48,11 @@ export default {
     border-radius: 30px;
     border: 5px solid whitesmoke;
     cursor: pointer;
+  }
+
+  .contentHolder{
+    display: flex;
+    justify-content: center;
   }
   
 </style>
