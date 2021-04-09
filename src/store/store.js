@@ -2,7 +2,6 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 
 export default createStore({
-
   state: {
     
     favoritesList:[],
@@ -15,6 +14,7 @@ export default createStore({
     channelByID: String,
     categories : String,
     programsByCategoryId : String,
+    programsFromTableauyID : String,
     programsBySearch : String,
   },
 
@@ -39,11 +39,15 @@ export default createStore({
     setProgramsByCategoryId(state,payload){
       state.programsByCategoryId = payload;
     },
+
+    setProgramsFromTableauyID(state, payload){
+      state.programsFromTableauyID = payload;
+    },
     setProgramsBySearch(state, payload){
       state.programsBySearch = payload;
     }
   },
-
+  
   actions: {
     async fetchFavoritesList(){
       await axios.get("http://localhost:3000/api/auth/favorites")
@@ -84,10 +88,19 @@ export default createStore({
       })
     },
 
-    async fetchProgramsByCategoryId(store, data){
-      await axios.get("http://localhost:3000/api/rest/programs/category/" + data)
+    async fetchProgramsByCategoryId(store, id){
+      await axios.get("http://localhost:3000/api/rest/programs/category/" + id)
       .then(response => {
         this.commit("setProgramsByCategoryId", response.data)
+        
+      })
+    },
+
+    // programsFromTableau
+    async fetchprogramsFromTableauyID(store, data){
+      await axios.get("http://localhost:3000/api/rest/programs/channel/" + data)
+      .then(response =>{
+        this.commit("setProgramsFromTableauyID", response.data)
       })
     },
   },
@@ -106,15 +119,17 @@ export default createStore({
     getChannels(state) {
       return state.channels
     },
-
     getProgramsByChannelID(state) {
       return state.channelByID;
+    },
+    getProgramsFromTableauyID(state){
+      return state.programsFromTableauyID;
+    },
     },
     getFavoritesList(state){
       return state.favoritesList
     }
   },    
-
 
   modules: {
   }

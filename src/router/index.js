@@ -5,6 +5,7 @@ import Channels from "../components/Channels.vue";
 import Favorites from "../components/Favorites.vue";
 import Friends from "../components/Friends.vue";
 import Programs from "../components/Programs.vue";
+import ProgramFromTableau from '../components/ProgramFromTableau';
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue"
 
@@ -48,6 +49,11 @@ const routes = [
     path:"/register",
     name: "Register",
     component: Register
+  },
+  {
+    path: "/ProgramFromTableau",
+    name: "ProgramFromTableau",
+    component: ProgramFromTableau
   },
 ]
 
