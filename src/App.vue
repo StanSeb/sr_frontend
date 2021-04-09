@@ -15,6 +15,9 @@
       <div class="friends-container">
         <router-link to="/friends" id="friends" class="route">Vänner</router-link>
       </div>
+      <div class="search-container">
+        <router-link to="/search" id="seach" class="route">Search</router-link>
+      </div>
     </div>
 
     <input
@@ -24,7 +27,6 @@
       placeholder="Sök"
       id="searchbar"
     />
-
     <div class="buttons">
       <button>
         <router-link to="/register" id="register" class="registerRoute">sign up</router-link>
@@ -36,32 +38,17 @@
     </div>
   </div>
   <router-view />
-
-  <div id="search" v-if="input">
-    <h1>Sökresultat för: "{{ input }}"</h1>
-    <h4>{{ getProgramsBySearch.length }} träffar</h4>
-    <ul v-for="(program, index) in getProgramsBySearch" :key="index">
-      <li>
-        <img id="picture" :src="program.programimage" />
-        <h3>{{ program.name }}</h3>
-        <p>{{ program.description }}</p>
-      </li>
-    </ul>
-  </div>
 </template>
 
 <script>
+
+
 export default {
-  data() {
-    return {
-      input: "",
-    };
-  },
+
 
   computed: {
-    getProgramsBySearch() {
-      return this.$store.getters.getProgramsBySearch;
-    },
+
+    
 
     loggedInUser() {
       return this.$store.state.loggedInUser;
@@ -75,6 +62,7 @@ export default {
   methods: {
     ProgramsBySearch(input) {
       this.$store.dispatch("fetchProgramsBySearch", input);
+      this.$router.push("/search")
     },
 
     async logout() {
@@ -182,26 +170,5 @@ body {
   padding-bottom: 20px;
   border-top: 1px solid rgb(223, 223, 223);
   display: block;
-}
-
-#search img {
-  width: 50px;
-  height: 50px;
-}
-
-#search ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-#search li h1 {
-  display: inline-block;
-  padding: 15px;
-  margin: 10px;
-  background-color: white;
-  width: 75%;
-  margin: 0 auto;
-  justify-content: center;
-  border-radius: 15px;
 }
 </style>
