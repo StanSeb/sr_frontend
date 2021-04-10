@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .favorites-container {
     background-color: white;
     width: 75%;

@@ -8,10 +8,11 @@
         <ul v-for="(channelItem, index) in getProgramsFromTableauyID" :key="index">
             <li>
                 <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
-           
+                <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast.png"/>
                 {{channelItem.responsibleeditor}} <br>
                 <img :src="channelItem.programimage"/>
                 {{channelItem.name}} <br>
+               
                 
                 {{channelItem.programurl}}  
             </li>
@@ -22,7 +23,6 @@
 
 <script>
 export default {
-
   computed: {
     getProgramsFromTableauyID(){
       return this.$store.getters.getProgramsFromTableauyID;
@@ -41,20 +41,23 @@ export default {
      DescriptionByProgramId(programId){
        this.$store.dispatch("fetchDescriptionByProgramId", programId);
       this.$router.push("/description")
+     },
+     ProgramBroadcast(programId){
+       this.$store.dispatch("fetchProgramBroadcasts", programId);
+      this.$router.push("/broadcast")
      } 
   }
 }
 </script>
 
 <style scoped>
-#info{
-  width: 30px;
-  height: 30px;
-  display: flex-end;
-  justify-content:right;
+#info, #broadcast{
+  width: 20px;
+  height: 20px;
 }
 
 .programsFromTableau-container {
+  
     background-color: white;
     width: 75%;
     margin: 0 auto;

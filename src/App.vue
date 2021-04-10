@@ -16,8 +16,9 @@
         <router-link to="/friends" id="friends" class="route">Vänner</router-link>
       </div>
       <div class="search-container">
-        <router-link to="/search" id="seach" class="route">Search</router-link>
+        <router-link to="/search" id="search" class="route"></router-link>
       </div>
+      
     </div>
 
     <input
@@ -44,11 +45,7 @@
 
 
 export default {
-
-
   computed: {
-
-    
 
     loggedInUser() {
       return this.$store.state.loggedInUser;

@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .friends-container {
     background-color: white;
     width: 75%;

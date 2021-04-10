@@ -5,7 +5,8 @@
           <img id="info" src="../assets/logo.png"/>
           <h3>Programinformation:</h3>
           <p>{{ getDescriptionByProgramId.description}}</p>
-          <h3>Sändningar:</h3>
+          
+          <h3>Programmet Sänds:</h3>
           <p>{{ getDescriptionByProgramId.broadcastinfo}}</p>      
         </li>
       </ul> 
@@ -24,7 +25,11 @@ computed: {
 }
 </script>
 
-<style>
+<style scoped>
+ ul {
+  list-style-type: none;
+  padding: 0;
+}
 #description {
     position: fixed;
     width: 65%;
@@ -36,8 +41,5 @@ computed: {
     margin: 30px;
     border-radius: 20px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.4);
-}
-#button{
-    border-radius: 20px;
 }
 </style>

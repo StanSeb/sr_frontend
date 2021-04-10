@@ -11,6 +11,8 @@
     <h3 :v-text="{ text : activeName}">{{ activeName }}</h3>
     <ul v-for="(program, index) in programs" :key="index">
       <li>
+         <img id="info" @click="DescriptionByProgramId(program.id)" src="../assets/info.png"/>
+         <img id="broadcast" @click="ProgramBroadcast(program.id)" src="../assets/broadcast.png"/>
         <img :src="program.programimage" />
         <div class="program-text">
           <h2>{{ program.name }}</h2>
@@ -57,12 +59,25 @@ export default {
 
       this.activeName = category.name;
     },
+    DescriptionByProgramId(programId){
+       this.$store.dispatch("fetchDescriptionByProgramId", programId);
+      this.$router.push("/description")
+     },
+     ProgramBroadcast(programId){
+       this.$store.dispatch("fetchProgramBroadcasts", programId);
+      this.$router.push("/broadcast")
+     } 
   }
 
 };
 </script>
 
 <style scoped>
+#info, #broadcast{
+   width:20px;
+    height:20px;
+    
+}
 
 .category-container {
   background-color: white;

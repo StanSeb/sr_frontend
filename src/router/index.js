@@ -10,6 +10,7 @@ import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 import ProgramSearch from "../views/ProgramSearch.vue";
 import Description from "../views/Description.vue";
+import ProgramBroadcasts from "../views/ProgramBroadcasts.vue";
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path:"/description",
     name: "Description",
     component: Description
+  },
+  {
+    path:"/broadcast",
+    name: "ProgramBroadcasts",
+    component: ProgramBroadcasts
   },
 ]
 

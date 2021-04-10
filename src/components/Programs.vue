@@ -7,17 +7,22 @@
     <div id = "program-info">
       <ul v-for="(channelItem, index) in getProgramsByChannelID" :key="index">
         <li>
+           <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast.png"/>
+           <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
           {{channelItem.starttimeutc}} <br>
           {{channelItem.title}} <br> 
         </li>
         </ul>
     </div>
+      <h1>Program</h1>
+     
   </div>
 </template>
 
 <script>
 
 export default {
+
   computed: {
     getProgramsByChannelID() {
       return this.$store.getters.getProgramsByChannelID;
@@ -27,17 +32,33 @@ export default {
   methods:{
     path(){
       this.$router.push("/ProgramFromTableau")
-    }
+    },
+     DescriptionByProgramId(programId){
+       this.$store.dispatch("fetchDescriptionByProgramId", programId);
+      this.$router.push("/description")
+     },
+     ProgramBroadcast(programId){
+       this.$store.dispatch("fetchProgramBroadcasts", programId);
+      this.$router.push("/broadcast")
+     } 
   },
+
+
 }
 
 </script>
 
 <style scoped>
+  #program-info img{
+    width:20px;
+    height:20px;
+    margin-top:10px;
+    
 
-body {
-  background-color: rgb(116, 116, 116);
-}
+  }
+  body {
+      background-color: rgb(116, 116, 116);
+  }
 
   ul li {
     list-style-type: none;
