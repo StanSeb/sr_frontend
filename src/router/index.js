@@ -38,7 +38,7 @@ const routes = [
     component: Friends
   },
   {
-    path: "/programs",
+    path: "/programs/:id",
     name: "Programs",
     component: Programs
   },
@@ -53,7 +53,7 @@ const routes = [
     component: Register
   },
   {
-    path: "/ProgramFromTableau",
+    path: "/ProgramFromTableau/:id",
     name: "ProgramFromTableau",
     component: ProgramFromTableau
   },
