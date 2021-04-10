@@ -6,15 +6,15 @@
     </div>
     <div id = "program-info">
         <ul v-for="(channelItem, index) in getProgramsFromTableauyID" :key="index">
-            <li>
-                <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
-           
-                {{channelItem.responsibleeditor}} <br>
-                <img :src="channelItem.programimage"/>
-                {{channelItem.name}} <br>
-                
-                {{channelItem.programurl}}  
-            </li>
+          <li>
+            <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
+        
+            {{channelItem.responsibleeditor}} <br>
+            <img :src="channelItem.programimage"/>
+            {{channelItem.name}} <br>
+            
+            {{channelItem.programurl}}  
+          </li>
         </ul>
     </div>
   </div>
@@ -22,7 +22,6 @@
 
 <script>
 export default {
-
   computed: {
     getProgramsFromTableauyID(){
       return this.$store.getters.getProgramsFromTableauyID;
@@ -31,12 +30,13 @@ export default {
   
   // shit is hardcoded!
   mounted() {
-    this.$store.dispatch("fetchprogramsFromTableauyID", 132)
+    console.log(this.$router.currentRoute._value.params.id)
+    this.$store.dispatch("fetchprogramsFromTableauyID", this.$router.currentRoute._value.params.id)
   },
 
   methods: {
       path(){
-        this.$router.push("/programs")
+        this.$router.push("/programs/" + this.$router.currentRoute._value.params.id)
       },
      DescriptionByProgramId(programId){
        this.$store.dispatch("fetchDescriptionByProgramId", programId);

@@ -18,6 +18,7 @@
 <script>
 
 export default {
+ 
   computed: {
     getProgramsByChannelID() {
       return this.$store.getters.getProgramsByChannelID;
@@ -26,7 +27,8 @@ export default {
 
   methods:{
     path(){
-      this.$router.push("/ProgramFromTableau")
+      console.log(this.$router.params)
+      this.$router.push("/ProgramFromTableau/" + this.$router.currentRoute._value.params.id)
     }
   },
 }
