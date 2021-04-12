@@ -1,4 +1,6 @@
 <template>
+<!--Denna view är kopplade till info-icon och visar 
+informationen om ett program-->
   <div>
     <ul v-if="show = true">
         <li id="description">
@@ -7,7 +9,8 @@
           <p>{{ getDescriptionByProgramId.description}}</p>
           
           <h3>Programmet Sänds:</h3>
-          <p>{{ getDescriptionByProgramId.broadcastinfo}}</p>      
+          <p>{{ getDescriptionByProgramId.broadcastinfo}}</p> 
+           <p>-</p>      
         </li>
       </ul> 
   </div>
@@ -18,7 +21,7 @@ export default {
 name: "Description",
 
 computed: {
-    getDescriptionByProgramId() {
+    getDescriptionByProgramId() { //Hämtar programmets information från funktionen i store
       return this.$store.getters.getDescriptionByProgramId;
     },
 },

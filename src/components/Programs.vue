@@ -7,12 +7,14 @@
     <div id = "program-info">
       <ul v-for="(channelItem, index) in getProgramsByChannelID" :key="index">
         <li>
+            <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
            <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast.png"/>
+                    <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
            <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
-          {{channelItem.starttimeutc}} <br>
+            {{channelItem.starttimeutc}} <br>
           {{channelItem.title}} <br> 
         </li>
-        </ul>
+      </ul>
     </div>
       <h1>Program</h1>
      
@@ -33,14 +35,15 @@ export default {
     path(){
       this.$router.push("/ProgramFromTableau")
     },
-     DescriptionByProgramId(programId){
+     DescriptionByProgramId(programId){ // anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchDescriptionByProgramId", programId);
-      this.$router.push("/description")
+      this.$router.push("/description")//visar Description.view - view
      },
-     ProgramBroadcast(programId){
+     ProgramBroadcast(programId){// anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchProgramBroadcasts", programId);
-      this.$router.push("/broadcast")
-     } 
+      this.$router.push("/broadcast")//visar ProgramBroadcast.vue - view
+     },
+     
   },
 
 

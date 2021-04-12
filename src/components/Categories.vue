@@ -11,7 +11,11 @@
     <h3 :v-text="{ text : activeName}">{{ activeName }}</h3>
     <ul v-for="(program, index) in programs" :key="index">
       <li>
+        <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
+        <img id="favo" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/favorite.png"/>
+         <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
          <img id="info" @click="DescriptionByProgramId(program.id)" src="../assets/info.png"/>
+         <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
          <img id="broadcast" @click="ProgramBroadcast(program.id)" src="../assets/broadcast.png"/>
         <img :src="program.programimage" />
         <div class="program-text">
@@ -59,21 +63,35 @@ export default {
 
       this.activeName = category.name;
     },
-    DescriptionByProgramId(programId){
+    DescriptionByProgramId(programId){ // anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchDescriptionByProgramId", programId);
-      this.$router.push("/description")
+      this.$router.push("/description") //visar Description.view - view
      },
-     ProgramBroadcast(programId){
+     ProgramBroadcast(programId){ // anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchProgramBroadcasts", programId);
-      this.$router.push("/broadcast")
-     } 
+      this.$router.push("/broadcast") //visar ProgramBroadcast.vue - view
+     },
+     async addFavorite(image, name, url) { // funktion för att skapa POST
+      let favoBody={
+        name,
+        image,
+        url,
+      }
+      await fetch('http://localhost:3000/api/auth/favorites',{ // sparar favoriter i Databasen
+      method: 'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(favoBody),
+    }) 
+      alert("Du har en ny favorit <3!!!")
+      this.$router.push("/favorites") // Visar listan med favoriter som ligger i Favorites.vue
+    }, 
   }
 
 };
 </script>
 
 <style scoped>
-#info, #broadcast{
+#info, #broadcast, #favo{
    width:20px;
     height:20px;
     

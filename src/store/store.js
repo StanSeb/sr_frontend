@@ -67,21 +67,21 @@ export default createStore({
       console.log(data)
     },
 
+    //Hämtar information om ett program från API
     async fetchDescriptionByProgramId(store, programId){
       await axios.get("http://localhost:3000/api/rest/description/" + programId)
       .then(response => {
         this.commit("setDescriptionByProgramId", response.data)
       })
     },
-
+    //Hämtar programmets sändningar från API
     async fetchProgramBroadcasts(store, programId){
-      console.log("soy de store"+programId)
       await axios.get("http://localhost:3000/api/rest/program/broadcasts/" + programId)
       .then(response => {
         this.commit("setProgramBroadcasts", response.data)
       })
     },
-
+    //Letar efter program utifrån ett ord eller en mening
     async fetchProgramsBySearch(store, input){
       await axios.get("http://localhost:3000/api/rest/programs/" + input)
       .then(response => {
@@ -130,8 +130,8 @@ export default createStore({
 
   getters: {
     getProgramBroadcasts(state){
-      return state.programBroadcasts
-    },
+        return state.programBroadcasts
+      },
 
     getDescriptionByProgramId(state){
       return state.descriptionByProgramId

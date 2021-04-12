@@ -7,14 +7,16 @@
     <div id = "program-info">
         <ul v-for="(channelItem, index) in getProgramsFromTableauyID" :key="index">
             <li>
+                <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
+               <img id="favo" @click="addFavorite(channelItem.programimage, channelItem.name, channelItem.programurl)" src="../assets/favorite.png"/>
+                <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
                 <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
+                 <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
                 <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast.png"/>
                 {{channelItem.responsibleeditor}} <br>
-                <img :src="channelItem.programimage"/>
-                {{channelItem.name}} <br>
-               
-                
-                {{channelItem.programurl}}  
+               <img :src="channelItem.programimage"/>
+                <p>{{channelItem.name}} </p>
+                 <p>{{channelItem.programurl}}</p>
             </li>
         </ul>
     </div>
@@ -23,6 +25,7 @@
 
 <script>
 export default {
+ 
   computed: {
     getProgramsFromTableauyID(){
       return this.$store.getters.getProgramsFromTableauyID;
@@ -35,23 +38,38 @@ export default {
   },
 
   methods: {
+    async addFavorite(image, name, url) {// funktion för att skapa POST
+      let favoBody={
+        name,
+        image,
+        url,
+      }
+
+    await fetch('http://localhost:3000/api/auth/favorites',{// sparar favoriter i Databasen
+      method: 'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(favoBody),
+    }) 
+      alert("Du har en ny favorit <3!!!")
+      this.$router.push("/favorites") // Visar listan med favoriter som ligger i Favorites.vue
+    },
       path(){
         this.$router.push("/programs")
       },
-     DescriptionByProgramId(programId){
+     DescriptionByProgramId(programId){// anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchDescriptionByProgramId", programId);
       this.$router.push("/description")
      },
-     ProgramBroadcast(programId){
+     ProgramBroadcast(programId){// anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchProgramBroadcasts", programId);
-      this.$router.push("/broadcast")
+       this.$router.push("/broadcast")
      } 
   }
 }
 </script>
 
 <style scoped>
-#info, #broadcast{
+#info, #broadcast, #favo{
   width: 20px;
   height: 20px;
 }
