@@ -7,6 +7,7 @@ import Friends from "../components/Friends.vue";
 import Programs from "../components/Programs.vue";
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue"
+import Users from "../components/Users.vue"
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
     path: "/friends",
     name: "Friends",
     component: Friends
+  },
+  {
+    path: "/users",
+    name: "Users",
+    component: Users
   },
   {
     path: "/programs",

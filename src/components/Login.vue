@@ -63,7 +63,7 @@ export default {
       } catch {
         alert("Wrong credentials!please check username or password!");
       }
-      this.$router.push("/programs")//ändra från programs till "home"
+      this.$router.push("/home")//ändra från programs till "home"
     },
   },
 };

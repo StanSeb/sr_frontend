@@ -3,7 +3,7 @@
       <h1>Favoriter</h1>
 
   <ol v-for="(favoritesList, favoriteIndex) in getFavoritesList" :key="favoriteIndex">
-    <li>{{favoritesList.name}}{{favoritesList.url}}</li><span @click="remove">X</span>
+    <li>{{favoritesList.name}} {{favoritesList.url}}</li><span @click="remove">X</span>
   </ol>
 
   </div>
