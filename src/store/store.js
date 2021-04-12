@@ -84,7 +84,7 @@ export default createStore({
           this.commit("setChannels", response.data)
         })
     },
-
+    // dessa 3 metoder används för samma user story
     async fetchChannelsByID(store, channelID) {
       console.log(channelID)
       await axios.get("http://localhost:3000/api/rest/channels/broadcasts/" + channelID)
@@ -93,6 +93,26 @@ export default createStore({
           this.commit("setProgramsByChannelID", response.data)
       })
     },
+    
+    async fetchChannelsByIDTomorrow(store, channelID) {
+      console.log(channelID)
+      await axios.get("http://localhost:3000/api/rest/channels/broadcastsTomorrow/" + channelID)
+      .then(response => {
+          console.log(response.data)
+          this.commit("setProgramsByChannelID", response.data)
+      })
+    },
+
+    async fetchChannelsByIDDayAfterTomorrow(store, channelID) {
+      console.log(channelID)
+      await axios.get("http://localhost:3000/api/rest/channels/broadcastsDayAfterTomorrow/" + channelID)
+      .then(response => {
+          console.log(response.data)
+          this.commit("setProgramsByChannelID", response.data)
+      })
+    },
+
+    // slut
     async fetchCategories(){
       await axios.get("http://localhost:3000/api/rest/categories")
       .then(response => {

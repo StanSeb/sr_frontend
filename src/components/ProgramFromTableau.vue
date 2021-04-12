@@ -30,14 +30,14 @@ export default {
   
   // shit is hardcoded!
   mounted() {
-    console.log(this.$router.currentRoute._value.params.id)
-    this.$store.dispatch("fetchprogramsFromTableauyID", this.$router.currentRoute._value.params.id)
+    this.$store.dispatch("fetchprogramsFromTableauyID", this.$route.params.id)
   },
 
   methods: {
-      path(){
-        this.$router.push("/programs/" + this.$router.currentRoute._value.params.id)
-      },
+    path(){
+      this.$router.push("/programs/" + this.$route.params.id)
+    },
+
      DescriptionByProgramId(programId){
        this.$store.dispatch("fetchDescriptionByProgramId", programId);
       this.$router.push("/description")
