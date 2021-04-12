@@ -83,9 +83,9 @@ export default {
             body: JSON.stringify(credentials),
 
         })
-            alert("registered!succesfurry")
+            alert("Registered succesfurry!")
 
-    this.$router.push("/home"
+    this.$router.push("/"
 )
     }
 

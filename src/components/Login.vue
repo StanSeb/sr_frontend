@@ -61,9 +61,9 @@ export default {
         this.$store.commit("setLoggedInUser", user);
         console.log(user);
       } catch {
-        alert("Wrong credentials!please check username or password!");
+        alert("Wrong credentials! Please check username or password.");
       }
-      this.$router.push("/home")//ändra från programs till "home"
+      this.$router.push("/")
     },
   },
 };

@@ -14,7 +14,7 @@ import Description from "../views/Description.vue";
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     component: Home
   },

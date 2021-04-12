@@ -7,8 +7,9 @@
       </div>
     </div>
     <div class="channels-container">
+      <h3>Live just nu!</h3>
       <ul v-for="(channelItem, index) in getChannels" :key="index">
-        <li>
+        <li v-if="index < 3">
           <img :src="channelItem.image" />
           <div class="channel-text">
             <h2>{{ channelItem.name }}</h2>
@@ -29,10 +30,11 @@
 
 <script>
 export default {
+
   computed: {
-    getChannels() {
+    getChannels(){      
       return this.$store.getters.getChannels;
-    },
+    }
   },
 
   mounted() {
@@ -85,17 +87,52 @@ audio {
 .channels-container {
  display: block;
  margin-right: 50px;
+ width: 100%;
+ text-align: center;
+}
+
+.channels-container h3 {
+  background-color: rgb(218, 40, 40);
+  color: white;
+  padding: 1%;
+  border-radius: 20px;
+  width: 10%;
+  box-shadow: inset 0px 0px 10px rgb(0, 0, 0);
+  margin: 0 auto;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.channels-container ul {
+  margin-right: 50px;
+  justify-content: space-evenly;
 }
 
 .channels-container ul li {
   list-style: none;
   margin: 0 auto;
-  display: flex;
+  display: block;
+  border-bottom: 1px solid rgb(197, 197, 197);
+  margin-bottom: 50px;
 }
 
 .channels-container ul li img{
   width: 10%;
   height: 10%;
+}
+
+.channel-text {
+  margin-bottom: 20px;
+}
+
+.channels-live {
+  display:block;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.channels-live audio {
+  width: 300px;
 }
 
 </style>

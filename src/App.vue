@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <router-link to="/home" id="logo">
+    <router-link to="/" id="logo">
       <img src="./assets/Sverigesradio_ppt.png" /><br />listan</router-link>
     <div class="routes">
       <div class="channel-container">
@@ -9,15 +9,16 @@
       <div class="program-container">
         <router-link to="/categories" id="categories" class="route">Program</router-link>
       </div>
+      <template v-if="isLoggedIn">
       <div class="favorites-container">
         <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link >
       </div>
+      </template>
+      <template v-if="isLoggedIn">
       <div class="friends-container">
         <router-link to="/friends" id="friends" class="route">Vänner</router-link>
       </div>
-      <div class="search-container">
-        <router-link to="/search" id="seach" class="route">Search</router-link>
-      </div>
+      </template>
     </div>
 
     <input
@@ -37,6 +38,7 @@
       <button class="logout" @click="logout">Logout</button>
       <h4 v-if="isLoggedIn">Is logged in: {{loggedInUser.firstName}}</h4>
     </div>
+    <h4 v-if="isLoggedIn">Logged in as: {{ loggedInUser.firstName }}</h4>
   </div>
   <router-view />
 </template>
@@ -68,23 +70,23 @@ export default {
 
     async logout() {
       //tells backend to forget about us
-      fetch("/logout", { mode: "no-cors" });
+      fetch('/logout', { mode: 'no-cors' });
 
       //removes logged in user from "store"
-      this.$store.commit("setLoggedInUser", null);
-      alert("you have logged out");
-      this.$router.push("/home")
-    },
+      this.$store.commit('setLoggedInUser', null);
+      this.$router.push('/')
+      alert('You have logged out');
+    }
   },
 
   async mounted() {
-    let user = await fetch("/api/auth/whoami");
+    let user = await fetch('/api/auth/whoami');
     try {
       user = await user.json();
-      this.$store.commit("setLoggedInUser", user);
-      console.log("user");
+      this.$store.commit('setLoggedInUser', user);
+      console.log(user);
     } catch {
-      console.log("not logged in");
+      console.log('not logged in');
     }
   },
 };
