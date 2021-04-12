@@ -5,6 +5,9 @@ export default createStore({
   state: {
     
     favoritesList:[],
+    friendsList:[],
+    usersList:[],
+    friend:String,
     email:String,
     password:String,
     name:String,
@@ -24,6 +27,12 @@ export default createStore({
     setFavorites(state, payload){
       state.favoritesList=payload;
     },
+    setFriendsList(state, payload){
+      state.friendsList=payload;
+    },
+    setUsersList(state, payload){
+      state.usersList=payload;
+    },
     setLoggedInUser(state, user){
      state.loggedInUser = user
 
@@ -33,6 +42,28 @@ export default createStore({
     },
     setProgramsByChannelID(state, payload) {
       state.channelByID = payload;
+    },
+
+
+    addFriend(state, friendId) 
+     {
+                                  //find loopar igenom en lista och stannar vid första matchning och returnerar objektet den hittar 
+      let friend = state.usersList.find(user=>user.userId==friendId)
+      if(friend){
+         state.friendsList.push(friend);
+      }
+    },
+    removeFriend(state, friendId) 
+     {
+                                  //find loopar igenom en lista och stannar vid första matchning och returnerar objektet den hittar 
+      let friend = state.friendsList.find(user=>user.userId==friendId)
+      if(friend){
+        let friendIndex=state.friendsList.indexOf(friend)
+         state.friendsList.splice(friendIndex,1);
+      }
+    },
+    setRemoveFriend(state, payload) {
+      state.friend = payload;
     },
     setCategories(state, payload){
       state.categories = payload;
@@ -57,6 +88,18 @@ export default createStore({
       await axios.get("http://localhost:3000/api/auth/favorites")
       .then(response=>{
         this.commit("setFavorites",response.data)
+      })
+    },
+    async fetchFriendsList(){
+      await axios.get("http://localhost:3000/api/auth/friends")
+      .then(response=>{
+        this.commit("setFriendsList",response.data)
+      })
+    },
+    async fetchUsersList(){
+      await axios.get("http://localhost:3000/api/auth/users")
+      .then(response=>{
+        this.commit("setUsersList",response.data)
       })
     },
     async actionWithValue(store, data){
@@ -90,6 +133,15 @@ export default createStore({
       .then(response => {
           console.log(response.data)
           this.commit("setProgramsByChannelID", response.data)
+      })
+    },
+   
+    async fetchRemoveFriend(store, friend) {//fungerar inte än
+      console.log(friend)
+      await axios.put("http://localhost:3000/api/auth/friends/"+{friend})
+      .then(response => {
+          console.log(response.data)
+          this.commit("setRemoveFriend", response.data)
       })
     },
     async fetchCategories(){
@@ -142,8 +194,15 @@ export default createStore({
     },
     getFavoritesList(state){
       return state.favoritesList
+    },
+    getFriendsList(state){
+      return state.friendsList
+    },
+    getUsersList(state){
+      return state.usersList
     }
   },    
+    
 
   modules: {
   }

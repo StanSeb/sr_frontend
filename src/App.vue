@@ -35,6 +35,7 @@
         <router-link to="/login" id="login" class="loginRoute">Login</router-link>
       </button>
       <button class="logout" @click="logout">Logout</button>
+      <h4 v-if="isLoggedIn">Is logged in: {{loggedInUser.firstName}}</h4>
     </div>
   </div>
   <router-view />
@@ -72,6 +73,7 @@ export default {
       //removes logged in user from "store"
       this.$store.commit("setLoggedInUser", null);
       alert("you have logged out");
+      this.$router.push("/home")
     },
   },
 

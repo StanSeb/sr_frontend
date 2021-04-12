@@ -70,14 +70,14 @@ export default {
     methods:{
       async register(){
         let credentials={
-
+            
             email:this.email,
             password:this.password,
             firstName:this.firstName,
             lastName:this.lastName
 
         }
-        await fetch('http://localhost:3000/api/auth/register',{
+        await fetch('http://localhost:3000/api/rest/register',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(credentials),
@@ -85,7 +85,7 @@ export default {
         })
             alert("registered!succesfurry")
 
-    this.$router.push("/programs"
+    this.$router.push("/home"
 )
     }
 
