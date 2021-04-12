@@ -77,15 +77,15 @@ export default {
             lastName:this.lastName
 
         }
-        await fetch('http://localhost:3000/api/auth/register',{
+        await fetch('http://localhost:3000/api/rest/register',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(credentials),
 
         })
-            alert("registered!succesfurry")
+            alert("Registered succesfurry!")
 
-    this.$router.push("/programs"
+    this.$router.push("/home"
 )
     }
 

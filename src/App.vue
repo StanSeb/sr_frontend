@@ -34,6 +34,7 @@
       </button>
       <button class="logout" @click="logout">Logout</button>
     </div>
+    <h4 v-if="isLoggedIn">Logged in as: {{ loggedInUser.firstName }}</h4>
   </div>
   <router-view />
 
@@ -79,22 +80,22 @@ export default {
 
     async logout() {
       //tells backend to forget about us
-      fetch("/logout", { mode: "no-cors" });
+      fetch('/logout', { mode: 'no-cors' });
 
       //removes logged in user from "store"
-      this.$store.commit("setLoggedInUser", null);
-      alert("you have logged out");
-    },
+      this.$store.commit('setLoggedInUser', null);
+      alert('You have logged out');
+    }
   },
 
   async mounted() {
-    let user = await fetch("/api/auth/whoami");
+    let user = await fetch('/api/auth/whoami');
     try {
       user = await user.json();
-      this.$store.commit("setLoggedInUser", user);
-      console.log("user");
+      this.$store.commit('setLoggedInUser', user);
+      console.log('user');
     } catch {
-      console.log("not logged in");
+      console.log('not logged in');
     }
   },
 };

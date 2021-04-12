@@ -25,7 +25,6 @@ export default createStore({
     },
     setLoggedInUser(state, user){
      state.loggedInUser = user
-
     },
     setChannels(state, payload) {
       state.channels = payload;
