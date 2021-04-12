@@ -2,6 +2,9 @@
   <div class="programs-container">
      <div class="contentHolder">
       <h1>Tablå</h1>
+      <button class="today-btn" @click="today">Idag</button>
+      <button class="tomorrow-btn" @click="tomorrow">Imorgon</button>
+      <button class="dayAfterTomorrow-btn" @click="dayAfterTomorrow">2 dagar framåt</button>
       <button class="program-btn" @click="path">Programs</button>
     </div>
     <div id = "program-info">
@@ -18,6 +21,7 @@
 <script>
 
 export default {
+ 
   computed: {
     getProgramsByChannelID() {
       return this.$store.getters.getProgramsByChannelID;
@@ -26,7 +30,16 @@ export default {
 
   methods:{
     path(){
-      this.$router.push("/ProgramFromTableau")
+      this.$router.push("/ProgramFromTableau/" + this.$route.params.id)
+    },
+      tomorrow(){
+      this.$store.dispatch("fetchChannelsByIDTomorrow", this.$route.params.id)
+    },
+      dayAfterTomorrow(){
+        this.$store.dispatch("fetchChannelsByIDDayAfterTomorrow", this.$route.params.id)
+    },
+    today(){
+       this.$store.dispatch("fetchChannelsByID",  this.$route.params.id)
     }
   },
 }

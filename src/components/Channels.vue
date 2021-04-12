@@ -13,11 +13,11 @@
 
 <script>
 export default {
-
+  
   computed: {
     getChannels(){
       return this.$store.getters.getChannels;
-    }
+    },
   },
 
   mounted() {
@@ -26,8 +26,9 @@ export default {
 
   methods:{
     path(channelID){
+  
       this.$store.dispatch("fetchChannelsByID", channelID)
-      this.$router.push("/programs")
+      this.$router.push("/programs/" + channelID)
    }
   }
 }
