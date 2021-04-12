@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <router-link to="/home" id="logo">
+    <router-link to="/" id="logo">
       <img src="./assets/Sverigesradio_ppt.png" /><br />listan</router-link>
     <div class="routes">
       <div class="channel-container">
@@ -9,12 +9,16 @@
       <div class="program-container">
         <router-link to="/categories" id="categories" class="route">Program</router-link>
       </div>
+      <template v-if="isLoggedIn">
       <div class="favorites-container">
         <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link >
       </div>
+      </template>
+      <template v-if="isLoggedIn">
       <div class="friends-container">
         <router-link to="/friends" id="friends" class="route">Vänner</router-link>
       </div>
+      </template>
     </div>
 
     <input
@@ -84,6 +88,7 @@ export default {
 
       //removes logged in user from "store"
       this.$store.commit('setLoggedInUser', null);
+      this.$router.push('/')
       alert('You have logged out');
     }
   },
@@ -93,7 +98,7 @@ export default {
     try {
       user = await user.json();
       this.$store.commit('setLoggedInUser', user);
-      console.log('user');
+      console.log(user);
     } catch {
       console.log('not logged in');
     }

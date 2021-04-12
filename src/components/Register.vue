@@ -85,7 +85,7 @@ export default {
         })
             alert("Registered succesfurry!")
 
-    this.$router.push("/home"
+    this.$router.push("/"
 )
     }
 

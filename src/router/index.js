@@ -10,7 +10,7 @@ import Register from "../components/Register.vue"
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     component: Home
   },
