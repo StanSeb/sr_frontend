@@ -5,7 +5,7 @@
       <button class="today-btn" @click="today">Idag</button>
       <button class="tomorrow-btn" @click="tomorrow">Imorgon</button>
       <button class="dayAfterTomorrow-btn" @click="dayAfterTomorrow">2 dagar framåt</button>
-      <button class="program-btn" @click="path">Programs</button>
+      <button class="program-btn" @click="path">Program</button>
     </div>
     <div id = "program-info">
       <ul v-for="(channelItem, index) in getProgramsByChannelID" :key="index">
@@ -46,7 +46,7 @@ export default {
     },
     today(){
        this.$store.dispatch("fetchChannelsByID",  this.$route.params.id)
-    }
+    },
      DescriptionByProgramId(programId){ // anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchDescriptionByProgramId", programId);
       this.$router.push("/description")//visar Description.view - view

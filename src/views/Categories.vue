@@ -11,18 +11,20 @@
     <h3 :v-text="{ text : activeName}">{{ activeName }}</h3>
     <ul v-for="(program, index) in programs" :key="index">
       <li>
-        <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
-        <img id="favo" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/favorite.png"/>
-         <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
-         <img id="info" @click="DescriptionByProgramId(program.id)" src="../assets/info.png"/>
-         <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
-         <img id="broadcast" @click="ProgramBroadcast(program.id)" src="../assets/broadcast.png"/>
         <img :src="program.programimage" />
         <div class="program-text">
           <h2>{{ program.name }}</h2>
           <p style="font-style: italic;">Programinformation:</p>
           <p>{{ program.description }}</p>
         </div>
+        <div class="icons">
+          <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
+          <img v-if="favoriteShow" id="favo" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/favorite.png"/>
+          <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
+          <img id="info" @click="DescriptionByProgramId(program.id)" src="../assets/info.png"/>
+          <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
+          <img id="broadcast" @click="ProgramBroadcast(program.id)" src="../assets/broadcast.png"/>
+        </div>        
       </li>
     </ul>
   </div>
@@ -39,6 +41,7 @@ export default {
         display: 'none',
       },
       activeName: '',
+      favoriteShow: false
     }
   },
 
@@ -51,9 +54,20 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
     this.$store.dispatch("fetchCategories");
     this.show = true;
+
+    let user = await fetch("/api/auth/whoami");
+      try {
+        user = await user.json();
+        this.$store.commit("setLoggedInUser", user);
+        if(user!=null){
+          this.favoriteShow = true;
+        }
+      } catch {
+        console.log("Not logged in");
+      }
   },
 
   methods: {

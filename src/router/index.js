@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from "../components/Home.vue";
-import Categories from "../components/Categories.vue";
-import Channels from "../components/Channels.vue";
-import Favorites from "../components/Favorites.vue";
-import Friends from "../components/Friends.vue";
-import Programs from "../components/Programs.vue";
+import Home from "../views/Home.vue";
+import Categories from "../views/Categories.vue";
+import Channels from "../views/Channels.vue";
+import Favorites from "../views/Favorites.vue";
+import Friends from "../views/Friends.vue";
+import Programs from "../views/Programs.vue";
 import ProgramFromTableau from '../components/ProgramFromTableau';
-import Login from "../components/Login.vue";
+import Login from "../views/Login.vue";
 import Users from "../components/Users.vue"
-import Register from "../components/Register.vue";
-import ProgramSearch from "../views/ProgramSearch.vue";
+import Register from "../views/Register.vue";
+import ProgramSearch from "../components/ProgramSearch.vue";
 import Description from "../views/Description.vue";
-import ProgramBroadcasts from "../views/ProgramBroadcasts.vue";
+import ProgramBroadcasts from "../components/ProgramBroadcasts.vue";
 
 const routes = [
   {

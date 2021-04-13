@@ -31,24 +31,4 @@ export default {
 
 <style scoped>
 
- img {
-  width: 50px;
-  height: 50px;
-}
- ul {
-  list-style-type: none;
-  padding: 0;
-}
-
- #favorites, h1, h4{
-  display: inline-block;
-  padding: 15px;
-  margin: 10px;
-  background-color: white;
-  width: 75%;
-  margin: 0 auto;
-  justify-content: center;
-  border-radius: 15px;
-  
-}
 </style>

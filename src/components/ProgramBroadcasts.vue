@@ -3,7 +3,7 @@
 broadcast-icon och visar programmets sändningar-->
   <div id="broadcast">
      
-      <h3 v-if="getProgramBroadcasts.length===0"> Det finns ingenting att visa :(</h3>
+      <h3 v-if="getProgramBroadcasts.length===0"> Det finns ingenting att visa</h3>
       <ul v-for="(broadcast, index) in getProgramBroadcasts" :key="index"> 
           <li>  
           <img id="picture" :src=broadcast.image>
@@ -11,7 +11,7 @@ broadcast-icon och visar programmets sändningar-->
           <p>Datum: {{ broadcast.broadcastdateutc}}</p>
           <p>{{ broadcast.totalduration}}</p>
           <p>{{ broadcast.url}}</p>
-           <img id="favo" @click="addFavorite(broadcast.image, broadcast.title, broadcast.url)" src="../assets/favorite.png"/>
+           <img id="favo" @click="addFavorite(broadcast.image, broadcast.title, broadcast.url)" src="../assets/favorite.png" v-if="isLoggedIn"/>
         </li>
         
       </ul>  

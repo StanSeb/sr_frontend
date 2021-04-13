@@ -12,7 +12,6 @@
         >Dela favoriter</a
       >
     </ul>
-    <button @click="stringifyFavorites">TEST</button>
   </div>
   <div class="users-container">
     <Users />
@@ -20,7 +19,7 @@
 </template>
 
 <script>
-import Users from "./Users.vue";
+import Users from "../components/Users.vue";
 
 export default {
   name: "friendsList",

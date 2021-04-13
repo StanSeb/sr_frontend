@@ -29,13 +29,13 @@
       id="searchbar"
     />
     <div class="buttons">
-      <button>
+      <button v-if="!isLoggedIn">
         <router-link to="/register" id="register" class="registerRoute">sign up</router-link>
       </button>
-      <button>
+      <button v-if="!isLoggedIn">
         <router-link to="/login" id="login" class="loginRoute">Login</router-link>
       </button>
-      <button class="logout" @click="logout">Logout</button>
+      <button v-if="isLoggedIn" class="logout" @click="logout">Logout</button>
     </div>
     <h4 v-if="isLoggedIn">Inloggad som: {{ loggedInUser.firstName }}</h4>
   </div>
@@ -78,7 +78,7 @@ export default {
       user = await user.json();
       this.$store.commit('setLoggedInUser', user);
     } catch {
-      console.log('not logged in');
+      console.log('Not logged in');
     }
   },
 };

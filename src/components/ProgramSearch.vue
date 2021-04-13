@@ -10,7 +10,7 @@ alla program som matchar den skrivna orden i sökfältet-->
           <p style="font-style: italic;">Om programmet:</p>
           <p>{{ program.description }}</p>
           <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
-          <img id="info" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/favorite.png"/>
+          <img v-if="show" id="info" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/favorite.png"/>
           <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
            <img id="info" @click="DescriptionByProgramId(program.id)" src="../assets/info.png"/>
            <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
@@ -25,6 +25,25 @@ alla program som matchar den skrivna orden i sökfältet-->
 export default {
     
 name: "ProgramSearch",
+
+data(){
+  return {
+    show: false
+  }
+},
+
+async mounted(){
+let user = await fetch("/api/auth/whoami");
+      try {
+        user = await user.json();
+        this.$store.commit("setLoggedInUser", user);
+        if(user!=null){
+          this.show = true;
+        }
+      } catch {
+        console.log("Not logged in");
+      }
+},
 
 computed: {
     getProgramsBySearch() {
