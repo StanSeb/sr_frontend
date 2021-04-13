@@ -11,9 +11,9 @@
       <ul v-for="(channelItem, index) in getProgramsByChannelID" :key="index">
         <li>
             <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
-           <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast.png"/>
+           <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast-tower-solid.svg"/>
                     <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
-           <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
+           <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info-solid.svg"/>
             {{channelItem.starttimeutc}} <br>
           {{channelItem.title}} <br> 
         </li>
@@ -67,10 +67,9 @@ export default {
   #program-info img{
     width:20px;
     height:20px;
-    margin-top:10px;
-    
-
+    margin-top:10px;  
   }
+
   body {
       background-color: rgb(116, 116, 116);
   }

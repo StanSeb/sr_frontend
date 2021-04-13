@@ -1,16 +1,21 @@
 <template>
 <!--Denna view är kopplade till info-icon och visar 
 informationen om ett program-->
-  <div>
+  <div class="desc-container">
     <ul v-if="show = true">
-        <li id="description">
-          <img id="info" src="../assets/logo.png"/>
-          <h3>Programinformation:</h3>
-          <p>{{ getDescriptionByProgramId.description}}</p>
-          
-          <h3>Programmet Sänds:</h3>
-          <p>{{ getDescriptionByProgramId.broadcastinfo}}</p> 
-           <p>-</p>      
+        <li class="description">
+          <img id="info" src="../assets/Sverigesradio_ppt.png"/>
+          <div class="program-info">
+            <div class="info">
+              <h3>Programinformation:</h3>
+              <p>{{ getDescriptionByProgramId.description}}</p>          
+            </div>
+            <div class="broadcast">
+              <h3>Programmet Sänds:</h3>
+              <p>{{ getDescriptionByProgramId.broadcastinfo}}</p> 
+            </div>
+          </div>
+   
         </li>
       </ul> 
   </div>
@@ -29,20 +34,31 @@ computed: {
 </script>
 
 <style scoped>
- ul {
-  list-style-type: none;
-  padding: 0;
+
+.desc-container{
+  background-color: white;
+  width: 75%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  display: block;
 }
-#description {
-    position: fixed;
-    width: 65%;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 30px;
-    margin: 30px;
-    border-radius: 20px;
-    box-shadow: 4px 4px rgba(0, 0, 0, 0.4);
+
+.desc-container img {
+  width: 50%;
+  height: auto;
+  padding-top: 20px;
 }
+
+.description {
+  list-style: none;
+}
+
+.program-info {
+  margin-top: 50px;
+}
+
+.info {
+  margin-bottom: 50px;
+}
+
 </style>

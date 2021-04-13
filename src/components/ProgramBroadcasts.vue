@@ -1,17 +1,23 @@
 <template>
 <!--Denna view är kopplade till 
 broadcast-icon och visar programmets sändningar-->
-  <div id="broadcast">
+  <div class="broadcast">
      
-      <h3 v-if="getProgramBroadcasts.length===0"> Det finns ingenting att visa</h3>
+      <h1 v-if="getProgramBroadcasts.length===0"> Det finns ingenting att visa.</h1>
       <ul v-for="(broadcast, index) in getProgramBroadcasts" :key="index"> 
           <li>  
-          <img id="picture" :src=broadcast.image>
-         <h3>{{ broadcast.title }}</h3>
-          <p>Datum: {{ broadcast.broadcastdateutc}}</p>
-          <p>{{ broadcast.totalduration}}</p>
-          <p>{{ broadcast.url}}</p>
-           <img id="favo" @click="addFavorite(broadcast.image, broadcast.title, broadcast.url)" src="../assets/favorite.png" v-if="isLoggedIn"/>
+           <div class="image-text">
+            <img id="picture" :src=broadcast.image>
+            <div class="text">
+              <h3>{{ broadcast.title }}</h3>
+              <p>Datum: {{ broadcast.broadcastdateutc}}</p>
+            </div>
+           </div>
+           <div class="audio">
+            <audio controls :src="broadcast.url"></audio>
+            <p>Längd: {{ broadcast.totalduration}}</p>
+           </div>
+           <img id="favo" @click="addFavorite(broadcast.image, broadcast.title)" src="../assets/heart-regular.svg" v-if="isLoggedIn"/>
         </li>
         
       </ul>  
@@ -44,7 +50,7 @@ computed: {
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(favoBody),
     }) 
-      alert("Du har en ny favorit <3!!!")
+      alert("Du har lagt till en ny favorit")
       this.$router.push("/favorites")
     }, 
   }
@@ -53,24 +59,47 @@ computed: {
 </script>
 
 <style scoped>
-li #favo{
-  width: 25px;
-  height: 25px;
-}
-li{
-  padding: 15px;
+
+.broadcast{
   background-color: white;
   width: 75%;
   margin: 0 auto;
-  justify-content: center;
-  border-radius: 15px; 
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: block;
+  margin-top: 20px;
 }
- ul {
-  list-style-type: none;
-  padding: 0;
+
+.broadcast ul {
+  list-style: none;
 }
- #favo, li img {
-  width: 50px;
-  height: 50px;
+
+.broadcast ul li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(211, 211, 211);
+  padding-bottom: 20px;
+  align-items: center;
 }
+
+.broadcast ul li img {
+  width: 200px;
+  height: auto;
+}
+
+.image-text {
+  display: flex;
+  float: left;
+}
+
+.text {
+  margin-left: 50px;
+  text-align: left;
+}
+
+.audio {
+  margin-right: 50px;
+  outline: none;
+}
+
 </style>

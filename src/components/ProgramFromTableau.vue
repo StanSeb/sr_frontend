@@ -11,11 +11,11 @@
           <img v-if="show" id="favo" @click="addFavorite(
                 channelItem.programimage,
                 channelItem.name,
-                channelItem.programurl)" src="../assets/favorite.png"/>
+                channelItem.programurl)" src="../assets/heart-regular.svg"/>
           <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
-          <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
+          <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info-solid.svg"/>
           <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
-          <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast.png" />
+          <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast-tower-solid.svg" />
           {{ channelItem.responsibleeditor }} <br />
           <img :src="channelItem.programimage" />
           <p>{{ channelItem.name }}</p>
@@ -93,12 +93,6 @@ export default {
 </script>
 
 <style scoped>
-#info,
-#broadcast,
-#favo {
-  width: 20px;
-  height: 20px;
-}
 
 .content-holder h1 {
   padding-top: 20px;

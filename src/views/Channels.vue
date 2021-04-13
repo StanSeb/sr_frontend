@@ -4,8 +4,10 @@
       <ul v-for="(channelItem, index) in getChannels" :key="index">
         <li @click="path(channelItem.id)">
           <img :src="channelItem.image"/>
-          <h2>{{channelItem.name}}</h2>
-          <p>{{channelItem.tagline}}</p>
+          <div class="text">
+            <h2>{{channelItem.name}}</h2>
+            <p>{{channelItem.tagline}}</p>
+          </div>
         </li>
       </ul>
   </div>
@@ -42,25 +44,39 @@ export default {
     justify-content: center;
 }
 
-h1 {
+.channels-container h1 {
   padding-top: 20px;
 }
 
-ul li {
-  list-style-type: none;
-  background-color: lightblue;
+.channels-container ul {
+  margin-top: 50px;
+  padding-left: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.channels-container ul li {
+  list-style: none;
+  display: flex;
+  padding-right: 20px;
+  border-bottom: 1px solid rgb(211, 211, 211);
   margin-bottom: 20px;
-  padding: 10px;
-  font-family: 'Alfa Slab One', cursive;
-  border-radius: 30px;
-  border: 5px solid whitesmoke;
+}
+
+.channels-container ul li:hover {
+  background-color: lightgrey;
+  transition: 0.2s;
   cursor: pointer;
 }
 
-img {
-  width: 70px;
-  height: 70px;
-  display: flex;
-  justify-content: left;
+.channels-container ul li img {
+  width: 200px;
+  height: auto;
 }
+
+.text {
+  text-align: left;
+  margin-left: 20px;
+}
+
 </style>

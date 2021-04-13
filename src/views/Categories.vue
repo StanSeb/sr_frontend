@@ -11,19 +11,21 @@
     <h3 :v-text="{ text : activeName}">{{ activeName }}</h3>
     <ul v-for="(program, index) in programs" :key="index">
       <li>
-        <img :src="program.programimage" />
-        <div class="program-text">
-          <h2>{{ program.name }}</h2>
-          <p style="font-style: italic;">Programinformation:</p>
+        <div class="image-and-text">
+          <img :src="program.programimage" />
+          <div class="program-text">
+            <h2>{{ program.name }}</h2>
+            <p style="font-style: italic;">Programinformation:</p>
           <p>{{ program.description }}</p>
-        </div>
+         </div>
+        </div>        
         <div class="icons">
           <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
-          <img v-if="favoriteShow" id="favo" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/favorite.png"/>
+          <img v-if="favoriteShow" class="icon" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/heart-regular.svg"/>
           <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
-          <img id="info" @click="DescriptionByProgramId(program.id)" src="../assets/info.png"/>
+          <img class="icon" @click="DescriptionByProgramId(program.id)" src="../assets/info-solid.svg"/>
           <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
-          <img id="broadcast" @click="ProgramBroadcast(program.id)" src="../assets/broadcast.png"/>
+          <img class="icon" @click="ProgramBroadcast(program.id)" src="../assets/broadcast-tower-solid.svg"/>
         </div>        
       </li>
     </ul>
@@ -105,11 +107,6 @@ export default {
 </script>
 
 <style scoped>
-#info, #broadcast, #favo{
-   width:20px;
-    height:20px;
-    
-}
 
 .category-container {
   background-color: white;
@@ -165,20 +162,50 @@ h3 {
 }
 
 .programs-container ul li {
-  margin: 0 auto;
   display: flex;
-  border-bottom: 1px solid rgb(211, 211, 211);
+  list-style: none;
   padding-bottom: 20px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+  justify-content: space-between;
+}
+
+.image-and-text {
+  display: flex;
+  text-align: left;
+}
+
+.image-and-text img {
+  width: 200px;
+  height: auto;
 }
 
 .program-text {
-  text-align: left;
-  margin-right: 50px;
+  margin-left: 20px;
 }
 
-.programs-container ul li img {
-  width: 10%;
-  height: 10%;
-  margin-right: 50px;
+.icons {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  justify-content: center;
 }
+
+.icons .icon {
+  width: 40px;
+  height: 40px;
+  filter: invert(100%);
+  background-color: rgb(65, 65, 65);
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: rgb(206, 206, 206);
+  filter: invert(100%);
+  transition: 0.2s;
+}
+
+
 </style>
