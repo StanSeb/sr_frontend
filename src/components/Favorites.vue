@@ -4,9 +4,15 @@
 
   <ul v-for="(favoritesList, favoriteIndex) in getFavoritesList" :key="favoriteIndex">
     <li id="favorites">
+      <h2>{{favoritesList.type}}</h2>
       <img :src="favoritesList.image"/>
       <h3>{{favoritesList.name}}</h3>
-      <p>{{favoritesList.url}} </p>
+       <audio
+              controls
+              :src="favoritesList.url"
+              type="audio/mp3"
+            ></audio>
+      <p>{{favoritesList.url}}</p>      
     </li>
       
   </ul>
