@@ -46,24 +46,21 @@ h1 {
   padding-top: 20px;
 }
 
-.channels-container ul li {
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgb(223, 223, 223);
-  display: block;
+ul li {
+  list-style-type: none;
+  background-color: lightblue;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-family: 'Alfa Slab One', cursive;
+  border-radius: 30px;
+  border: 5px solid whitesmoke;
   cursor: pointer;
 }
 
-.channels-container ul {
-  padding: 0;
-}
-
-.channels-container ul:hover {
-  background-color: lightgrey;
-}
-
 img {
-  width: 100px;
-  height: 100px;
-  margin-top: 10px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: left;
 }
 </style>
