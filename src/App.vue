@@ -44,11 +44,7 @@
 
 <script>
 export default {
-
-
   computed: {
-
-    
 
     loggedInUser() {
       return this.$store.state.loggedInUser;

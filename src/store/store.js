@@ -21,6 +21,7 @@ export default createStore({
     programsFromTableauyID : String,
     programsBySearch : String,
     descriptionByProgramId: String,
+    programBroadcasts: String,
   },
 
   mutations: {
@@ -80,6 +81,9 @@ export default createStore({
     },
     setDescriptionByProgramId(state, payload){
       state.descriptionByProgramId = payload;
+    },
+    setProgramBroadcasts(state, payload){
+      state.programBroadcasts = payload;
     }
   },
   
@@ -106,13 +110,21 @@ export default createStore({
       console.log(data)
     },
 
+    //Hämtar information om ett program från API
     async fetchDescriptionByProgramId(store, programId){
       await axios.get("http://localhost:3000/api/rest/description/" + programId)
       .then(response => {
         this.commit("setDescriptionByProgramId", response.data)
       })
     },
-
+    //Hämtar programmets sändningar från API
+    async fetchProgramBroadcasts(store, programId){
+      await axios.get("http://localhost:3000/api/rest/program/broadcasts/" + programId)
+      .then(response => {
+        this.commit("setProgramBroadcasts", response.data)
+      })
+    },
+    //Letar efter program utifrån ett ord eller en mening
     async fetchProgramsBySearch(store, input){
       await axios.get("http://localhost:3000/api/rest/programs/" + input)
       .then(response => {
@@ -189,6 +201,10 @@ export default createStore({
   },
 
   getters: {
+    getProgramBroadcasts(state){
+        return state.programBroadcasts
+      },
+
     getDescriptionByProgramId(state){
       return state.descriptionByProgramId
     },
