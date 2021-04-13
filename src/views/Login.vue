@@ -70,5 +70,28 @@ export default {
 </script>
 
 <style scoped>
+.LoginBtn{
+  
+        display: inline-block;
+        background-color:rgb(105, 117, 105);
+        border-radius: 10px;
+        border: 3px double #cccccc;
+        color:white;
+        text-align: center;
+        font-size: 14px;
+        padding: 3px;
+        width: 60px;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        cursor: pointer;
+        margin: 5px;
+        outline: none;
+}
+.LoginBtn:hover{
+  background: royalblue;
+
+}
 
 </style>

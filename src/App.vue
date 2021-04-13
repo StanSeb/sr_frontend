@@ -29,16 +29,17 @@
       id="searchbar"
     />
     <div class="buttons">
-      <button v-if="!isLoggedIn">
-        <router-link to="/register" id="register" class="registerRoute">sign up</router-link>
+      <button class="sameBtns" v-if="!isLoggedIn">
+        <router-link to="/register" id="register" class="registerRoute">Sign up</router-link>
       </button>
-      <button v-if="!isLoggedIn">
+      <button class="sameBtns" v-if="!isLoggedIn">
         <router-link to="/login" id="login" class="loginRoute">Login</router-link>
       </button>
-      <button v-if="isLoggedIn" class="logout" @click="logout">Logout</button>
+      <button class="sameBtns" v-if="isLoggedIn" @click="logout">Logout</button>
     </div>
-    <h4 v-if="isLoggedIn">Inloggad som: {{ loggedInUser.firstName }}</h4>
-  </div>
+   <h4 class="loggedInUser" v-if="isLoggedIn"> {{ loggedInUser.firstName }}</h4>
+    </div>
+  
   <router-view />
 </template>
 
@@ -168,4 +169,50 @@ body {
   border-top: 1px solid rgb(223, 223, 223);
   display: block;
 }
+
+.sameBtns{
+        display: inline-block;
+        background-color:rgb(105, 117, 105);
+        border-radius: 10px;
+        border: 3px double #cccccc;
+        color:seashell;
+        text-align: center;
+        font-size: 14px;
+        padding: 1px;
+        width: 60px;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        cursor: pointer;
+        margin: 1px; 
+        text-decoration: none;
+        outline: none;
+        
+}
+.sameBtns:hover{
+background-color:royalblue;
+}
+.sameBtns:active{
+  text-decoration: none;
+  color: seashell;
+}
+#register{
+   text-decoration: none;
+   color: seashell;
+}
+#login{
+   text-decoration: none;
+   color: seashell;
+}
+.loggedInUser{
+margin-left: 8px;
+cursor:progress;
+
+
+}
+.buttons{
+  margin-left: 10px;
+}
+
 </style>

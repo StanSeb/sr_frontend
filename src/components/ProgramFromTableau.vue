@@ -1,12 +1,13 @@
 <template>
   <div class="programsFromTableau-container">
     <div class="content-holder">
-      <h1>Program</h1>
-      <button class="program-btn" @click="path">Tablå</button>
+      <button class="program-tablue" @click="path">Tablå</button>
+      <button class="program-btn">Program</button>
     </div>
     <div id="program-info">
       <ul v-for="(channelItem, index) in getProgramsFromTableauyID" :key="index">
         <li>
+          <img :src="channelItem.programimage" /><br>
           <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
           <img v-if="show" id="favo" @click="addFavorite(
                 channelItem.programimage,
@@ -17,7 +18,7 @@
           <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
           <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast-tower-solid.svg" />
           {{ channelItem.responsibleeditor }} <br />
-          <img :src="channelItem.programimage" />
+          
           <p>{{ channelItem.name }}</p>
           <p>{{ channelItem.programurl }}</p>
         </li>
@@ -99,27 +100,59 @@ export default {
 }
 
 .programsFromTableau-container {
-  background-color: white;
-  width: 75%;
-  margin: 0 auto;
-  justify-content: center;
+    background-color: white;
+    width: 75%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-top: 1px solid rgb(223, 223, 223);
+    display: block;
+    margin-top: 20px;
+}
+
+ul{
+  padding:0;
+  margin-left: 10px;
 }
 
 ul li {
-  list-style-type: none;
-  background-color: lightblue;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-family: "Alfa Slab One", cursive;
-  border-radius: 30px;
-  border: 5px solid whitesmoke;
-  cursor: pointer;
+    margin-top: 100px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(223, 223, 223);
+    display: block;
 }
 
 img {
-  width: 70px;
-  height: 70px;
-  display: flex;
-  justify-content: left;
+  width: 130px;
+  height: 130px;
+}
+
+.content-holder{
+  margin-top: 10px;
+  float: left;
+  margin-left: 10px;
+}
+
+.content-holder button {
+  margin-top: 10px;
+  border-radius: 5px;
+  margin-left: 3px;
+}
+
+.content-holder button:hover{
+  background-color: grey;
+  color:whitesmoke;
+}
+
+.program-btn{
+  background-color: royalblue;
+  color: white;
+}
+
+#info {
+  cursor: pointer;
+}
+
+#broadcast{
+  cursor: pointer;
 }
 </style>
