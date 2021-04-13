@@ -1,23 +1,23 @@
 <template>
-<!--Denna view är kopplade till 
-broadcast-icon och visar programmets sändningar-->
   <div class="broadcast">
      
       <h1 v-if="getProgramBroadcasts.length===0"> Det finns ingenting att visa.</h1>
       <ul v-for="(broadcast, index) in getProgramBroadcasts" :key="index"> 
           <li>  
            <div class="image-text">
-            <img id="picture" :src=broadcast.image>
+            <img class="broadcastImage" :src=broadcast.image>
             <div class="text">
               <h3>{{ broadcast.title }}</h3>
               <p>Datum: {{ broadcast.broadcastdateutc}}</p>
             </div>
            </div>
-           <div class="audio">
-            <audio controls :src="broadcast.url"></audio>
-            <p>Längd: {{ broadcast.totalduration}}</p>
-           </div>
-           <img id="favo" @click="addFavorite(broadcast.image, broadcast.title)" src="../assets/heart-regular.svg" v-if="isLoggedIn"/>
+           <div class="audio-icon">
+             <div class="audio">
+              <audio controls :src="broadcast.url"></audio>
+              <p>Längd: {{ broadcast.totalduration}}</p>
+             </div>            
+            <img class="icon" @click="addFavorite(broadcast.image, broadcast.title, broadcast.url)" src="../assets/heart-regular.svg" v-if="isLoggedIn"/>
+           </div>         
         </li>
         
       </ul>  
@@ -27,6 +27,25 @@ broadcast-icon och visar programmets sändningar-->
 <script>
 export default {  
 name: "ProgramBroadcasts",
+
+data(){
+  return {
+    isLoggedIn: false
+  }
+},
+
+async mounted(){
+  let user = await fetch("/api/auth/whoami");
+      try {
+        user = await user.json();
+        this.$store.commit("setLoggedInUser", user);
+        if(user!=null){
+          this.isLoggedIn = true;
+        }
+      } catch {
+        console.log("Not logged in");
+      }
+},
 
 
 computed: {
@@ -97,9 +116,31 @@ computed: {
   text-align: left;
 }
 
+.audio-icon {
+  display: flex;
+}
+
 .audio {
   margin-right: 50px;
   outline: none;
+}
+
+.audio-icon .icon{
+  width: 40px;
+  height: 40px;
+  filter: invert(100%);
+  background-color: rgb(65, 65, 65);
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+.audio-icon .icon:hover {
+  background-color: rgb(206, 206, 206);
+  filter: invert(100%);
+  transition: 0.2s;
 }
 
 </style>

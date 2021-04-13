@@ -1,4 +1,5 @@
 <template>
+<meta charset="utf-8">
   <div class="friends-container">
     <h1>Vänner</h1>
     <div class="ulDiv">
@@ -76,7 +77,7 @@ export default {
       for(var i = 0; i < myFavorites.length; i++){
         name = myFavorites[i].name;
         url = myFavorites[i].url;
-        myFavoritesList+= "Program: " + name + "%0D%0ALink: " + url + "%0D%0A" + "%0D%0A";
+        myFavoritesList+= "Program: " + name + " %0D%0ALink: " + url + " %0D%0A " + " %0D%0A";
       }
       return myFavoritesList;
     }

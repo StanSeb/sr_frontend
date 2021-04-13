@@ -13,7 +13,7 @@
             <p>{{ channelItem.responsibleeditor }}</p>
           </div>
           <div class="icons">
-            <img v-if="show" class="icon" @click="addFavorite(
+            <img class="icon" v-if="show" @click="addFavorite(
                 channelItem.programimage,
                 channelItem.name,
                 channelItem.programurl)" src="../assets/heart-regular.svg"/>

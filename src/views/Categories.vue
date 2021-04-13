@@ -80,11 +80,11 @@ export default {
       this.activeName = category.name;
     },
     DescriptionByProgramId(programId){ // anropar funktionen i store och skickar program-id
-       this.$store.dispatch("fetchDescriptionByProgramId", programId);
+      this.$store.dispatch("fetchDescriptionByProgramId", programId);
       this.$router.push("/description") //visar Description.view - view
      },
      ProgramBroadcast(programId){ // anropar funktionen i store och skickar program-id
-       this.$store.dispatch("fetchProgramBroadcasts", programId);
+      this.$store.dispatch("fetchProgramBroadcasts", programId);
       this.$router.push("/broadcast") //visar ProgramBroadcast.vue - view
      },
      async addFavorite(image, name, url) { // funktion för att skapa POST
@@ -93,12 +93,13 @@ export default {
         image,
         url,
       }
+      console.log(favoBody);
       await fetch('http://localhost:3000/api/auth/favorites',{ // sparar favoriter i Databasen
       method: 'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(favoBody),
     }) 
-      alert("Du har en ny favorit <3!!!")
+      alert("Du har en ny favorit!")
       this.$router.push("/favorites") // Visar listan med favoriter som ligger i Favorites.vue
     }, 
   }

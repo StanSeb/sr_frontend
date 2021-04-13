@@ -55,7 +55,7 @@ computed: {
 
  methods: {
      DescriptionByProgramId(programId){// anropar funktionen i store och skickar program-id
-       this.$store.dispatch("fetchDescriptionByProgramId", programId);
+      this.$store.dispatch("fetchDescriptionByProgramId", programId);
       this.$router.push("/description")//visar Description.view - view
      },
      ProgramBroadcast(programId){// anropar funktionen i store och skickar program-id
@@ -73,7 +73,7 @@ computed: {
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(favoBody),
     }) 
-      alert("Du har en ny favorit <3!!!")
+      alert("Du har lagt till en ny favorit!")
       this.$router.push("/favorites")// Visar listan med favoriter som ligger i Favorites.vue
     }, 
   }

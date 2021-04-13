@@ -175,7 +175,7 @@ export default createStore({
       })
     },
 
-    // slut
+    
     async fetchCategories(){
       await axios.get("http://localhost:3000/api/rest/categories")
       .then(response => {

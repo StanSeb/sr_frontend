@@ -59,8 +59,7 @@ export default {
      ProgramBroadcast(programId){// anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchProgramBroadcasts", programId);
       this.$router.push("/broadcast")//visar ProgramBroadcast.vue - view
-     },
-     
+     },     
   },
 }
 
