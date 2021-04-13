@@ -46,7 +46,6 @@ export default {
         encodeURIComponent(this.email) +
         "&password=" +
         encodeURIComponent(this.password);
-      console.log(credentials);
 
       await fetch("http://localhost:3000/login", {
         method: "POST",
@@ -59,7 +58,6 @@ export default {
       try {
         user = await user.json();
         this.$store.commit("setLoggedInUser", user);
-        console.log(user);
       } catch {
         alert("Wrong credentials! Please check username or password.");
       }

@@ -2,7 +2,7 @@
   <div class="users-container">
     <h1>Alla användare</h1>
     <ul v-for="(usersList, userIndex) in getUsersList" :key="userIndex">
-      <li class="usersLi">{{ usersList.firstName }} {{ usersList.lastName }} {{ usersList.userId}}<button class="addFriend" @click="addFriend(usersList.userId)">Lägg till</button>
+      <li class="usersLi">{{ usersList.firstName }} {{ usersList.lastName }}<button class="addFriend" @click="addFriend(usersList.userId)">Lägg till</button>
       </li>
     </ul>
   </div>
@@ -28,8 +28,7 @@ export default {
   methods: {
     async addFriend(userId) {
       let friend = {
-        userId,
-      
+        userId,      
       }
       
       let response = await fetch("http://localhost:3000/api/auth/friends", {

@@ -15,16 +15,17 @@
     <div id = "program-info">
     <ul v-for="(channelItem, index) in getProgramsByChannelID" :key="index">
       <li>
-          <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
-          <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast.png"/>
-                  <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
-          <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info.png"/>
-          {{channelItem.starttimeutc}} <br>
-          {{channelItem.title}} <br> 
+        <div class="text">
+          <h3>{{channelItem.starttimeutc}}</h3>
+          <p>{{channelItem.title}}</p>
+        </div>          
+          <div class="icons">
+            <img class="icon" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast-tower-solid.svg"/>
+            <img class="icon" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info-solid.svg"/>
+          </div>
       </li>
     </ul>
     </div>
-    <h1>Program</h1>
  </div>
 </template>
 
@@ -96,6 +97,41 @@ export default {
     border-bottom: 1px solid rgb(223, 223, 223);
     display: block;
   }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .text h3 {
+    margin-bottom: 0;
+  }
+
+  .text p {
+    margin-top: 10px;
+  }
+
+  .icons {
+  display: flex;
+  justify-content: center;
+}
+
+.icons .icon {
+  width: 40px;
+  height: 40px;
+  filter: invert(100%);
+  background-color: rgb(65, 65, 65);
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: rgb(206, 206, 206);
+  filter: invert(100%);
+  transition: 0.2s;
+}
 
   .btn{
     margin-top:20px;

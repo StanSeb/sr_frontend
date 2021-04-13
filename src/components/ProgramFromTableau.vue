@@ -4,23 +4,22 @@
       <button class="program-tablue" @click="path">Tablå</button>
       <button class="program-btn">Program</button>
     </div>
-    <div id="program-info">
+    <div class="program-info">
       <ul v-for="(channelItem, index) in getProgramsFromTableauyID" :key="index">
         <li>
-          <img :src="channelItem.programimage" /><br>
-          <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
-          <img v-if="show" id="favo" @click="addFavorite(
+          <img :src="channelItem.programimage" />
+          <div class="text">
+            <h2>{{ channelItem.name }}</h2>
+            <p>{{ channelItem.responsibleeditor }}</p>
+          </div>
+          <div class="icons">
+            <img v-if="show" class="icon" @click="addFavorite(
                 channelItem.programimage,
                 channelItem.name,
                 channelItem.programurl)" src="../assets/heart-regular.svg"/>
-          <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
-          <img id="info" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info-solid.svg"/>
-          <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
-          <img id="broadcast" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast-tower-solid.svg" />
-          {{ channelItem.responsibleeditor }} <br />
-          
-          <p>{{ channelItem.name }}</p>
-          <p>{{ channelItem.programurl }}</p>
+            <img class="icon" @click="DescriptionByProgramId(channelItem.id)" src="../assets/info-solid.svg"/>
+            <img class="icon" @click="ProgramBroadcast(channelItem.id)" src="../assets/broadcast-tower-solid.svg" />
+          </div>
         </li>
       </ul>
     </div>
@@ -109,21 +108,49 @@ export default {
     margin-top: 20px;
 }
 
-ul{
-  padding:0;
-  margin-left: 10px;
+.program-info {
+  display: block;
 }
 
-ul li {
-    margin-top: 100px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgb(223, 223, 223);
-    display: block;
+.program-info ul {
+  margin-top: 100px;
+  padding-left: 15px;
 }
 
-img {
-  width: 130px;
-  height: 130px;
+.program-info ul li {
+  display: block;
+  list-style: none;
+  border-bottom: 1px solid rgb(223, 223, 223);
+  margin-right: 15px;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+.program-info ul li img {
+  width: 200px;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+}
+
+.icons .icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  filter: invert(100%);
+  background-color: rgb(65, 65, 65);
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: rgb(206, 206, 206);
+  filter: invert(100%);
+  transition: 0.2s;
 }
 
 .content-holder{
