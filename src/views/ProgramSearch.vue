@@ -27,7 +27,7 @@ computed: {
 }
 </script>
 
-<style>
+<style scoped>
 
  img {
   width: 50px;

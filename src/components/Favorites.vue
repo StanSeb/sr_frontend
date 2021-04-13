@@ -1,33 +1,45 @@
 <template>
   <div class="favorites-container">
-      <h1>Favoriter</h1>
-
-  <ol v-for="(favoritesList, favoriteIndex) in getFavoritesList" :key="favoriteIndex">
-    <li>{{favoritesList.name}} {{favoritesList.url}}</li><span @click="remove">X</span>
-  </ol>
-
+    <h1>Favoriter</h1>
+    <ul v-for="(favoritesList, favoriteIndex) in getFavoritesList" :key="favoriteIndex">
+      <li>
+        <img :src="favoritesList.image">
+        <a :href="favoritesList.url">{{ favoritesList.name }}</a>
+      </li>
+      <button @click="remove">X</button>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name:'favoritesList',
+  name: "favoritesList",
+
   computed: {
-    getFavoritesList(){
-      return this.$store.getters.getFavoritesList
-    }
+    getFavoritesList() {
+      return this.$store.getters.getFavoritesList;
+    },
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch("fetchFavoritesList");
-  }
-}
+  },
+};
 </script>
 
-<style>
+<style scoped>
 .favorites-container {
-    background-color: white;
-    width: 75%;
-    margin: 0 auto;
-    justify-content: center;
+  background-color: white;
+  width: 75%;
+  margin: 0 auto;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.favorites-container ul li {
+  list-style: none;
+}
+
+h1 {
+  padding-top: 20px;
 }
 </style>

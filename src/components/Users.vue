@@ -1,10 +1,10 @@
 <template>
   <div class="users-container">
     <h1>Alla användare</h1>
-    <ol v-for="(usersList, userIndex) in getUsersList" :key="userIndex">
+    <ul v-for="(usersList, userIndex) in getUsersList" :key="userIndex">
       <li class="usersLi">{{ usersList.firstName }} {{ usersList.lastName }} {{ usersList.userId}}<button @click="addFriend(usersList.userId)">add friend</button>
       </li>
-    </ol>
+    </ul>
   </div>
 </template>
 
@@ -54,7 +54,17 @@ export default {
   width: 75%;
   margin: 0 auto;
   justify-content: center;
+  margin-bottom: 20px;
 }
+
+h1 {
+  padding-top: 20px;
+}
+
+.usersLi {
+  list-style: none;
+}
+
 .usersLi button {
   cursor: pointer;
 }

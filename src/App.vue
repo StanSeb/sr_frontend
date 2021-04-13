@@ -36,16 +36,13 @@
         <router-link to="/login" id="login" class="loginRoute">Login</router-link>
       </button>
       <button class="logout" @click="logout">Logout</button>
-      <h4 v-if="isLoggedIn">Is logged in: {{loggedInUser.firstName}}</h4>
     </div>
-    <h4 v-if="isLoggedIn">Logged in as: {{ loggedInUser.firstName }}</h4>
+    <h4 v-if="isLoggedIn">Inloggad som: {{ loggedInUser.firstName }}</h4>
   </div>
   <router-view />
 </template>
 
 <script>
-
-
 export default {
 
 
@@ -84,7 +81,6 @@ export default {
     try {
       user = await user.json();
       this.$store.commit('setLoggedInUser', user);
-      console.log(user);
     } catch {
       console.log('not logged in');
     }

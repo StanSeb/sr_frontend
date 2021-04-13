@@ -24,7 +24,7 @@ computed: {
 }
 </script>
 
-<style>
+<style scoped>
 #description {
     position: fixed;
     width: 65%;
