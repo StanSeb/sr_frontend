@@ -10,14 +10,14 @@
         <router-link to="/categories" id="categories" class="route">Program</router-link>
       </div>
       <template v-if="isLoggedIn">
-      <div class="favorites-container">
-        <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link >
-      </div>
+        <div class="favorites-container">
+          <router-link to="/favorites" id="favorites" class="route">Favoriter</router-link>
+        </div>
       </template>
       <template v-if="isLoggedIn">
-      <div class="friends-container">
-        <router-link to="/friends" id="friends" class="route">Vänner</router-link>
-      </div>
+        <div class="friends-container">
+          <router-link to="/friends" id="friends" class="route">Vänner</router-link>
+        </div>
       </template>
     </div>
 
@@ -28,26 +28,25 @@
       placeholder="Sök"
       id="searchbar"
     />
+    
     <div class="buttons">
       <button class="sameBtns" v-if="!isLoggedIn">
-        <router-link to="/register" id="register" class="registerRoute">Sign up</router-link>
+        <router-link to="/register" id="register" class="registerRoute">Registrera</router-link>
       </button>
       <button class="sameBtns" v-if="!isLoggedIn">
-        <router-link to="/login" id="login" class="loginRoute">Login</router-link>
+        <router-link to="/login" id="login" class="loginRoute">Logga in</router-link>
       </button>
-      <button class="sameBtns" v-if="isLoggedIn" @click="logout">Logout</button>
+      <button class="sameBtns" v-if="isLoggedIn" @click="logout">Logga ut</button>
     </div>
-   <h4 class="loggedInUser" v-if="isLoggedIn"> {{ loggedInUser.firstName }}</h4>
-    </div>
-  
+    <h4 class="loggedInUser" v-if="isLoggedIn">{{ loggedInUser.firstName }}</h4>
+  </div>
+
   <router-view />
 </template>
 
 <script>
 export default {
-  
   computed: {
-
     loggedInUser() {
       return this.$store.state.loggedInUser;
     },
@@ -60,27 +59,27 @@ export default {
   methods: {
     ProgramsBySearch(input) {
       this.$store.dispatch("fetchProgramsBySearch", input);
-      this.$router.push("/search")
+      this.$router.push("/search");
     },
 
     async logout() {
       //tells backend to forget about us
-      fetch('/logout', { mode: 'no-cors' });
+      fetch("/logout", { mode: "no-cors" });
 
       //removes logged in user from "store"
-      this.$store.commit('setLoggedInUser', null);
-      this.$router.push('/')
-      alert('You have logged out');
-    }
+      this.$store.commit("setLoggedInUser", null);
+      this.$router.push("/");
+      alert("You have logged out");
+    },
   },
 
   async mounted() {
-    let user = await fetch('/api/auth/whoami');
+    let user = await fetch("/api/auth/whoami");
     try {
       user = await user.json();
-      this.$store.commit('setLoggedInUser', user);
+      this.$store.commit("setLoggedInUser", user);
     } catch {
-      console.log('Not logged in');
+      console.log("Not logged in");
     }
   },
 };
@@ -170,49 +169,44 @@ body {
   display: block;
 }
 
-.sameBtns{
-        display: inline-block;
-        background-color:rgb(105, 117, 105);
-        border-radius: 10px;
-        border: 3px double #cccccc;
-        color:seashell;
-        text-align: center;
-        font-size: 14px;
-        padding: 1px;
-        width: 60px;
-        -webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        -o-transition: all 0.3s;
-        transition: all 0.3s;
-        cursor: pointer;
-        margin: 1px; 
-        text-decoration: none;
-        outline: none;
-        
+.sameBtns {
+  display: inline-block;
+  background-color: rgb(105, 117, 105);
+  border-radius: 10px;
+  border: 3px double #cccccc;
+  color: seashell;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin: 1px;
+  text-decoration: none;
+  outline: none;
 }
-.sameBtns:hover{
-background-color:royalblue;
+.sameBtns:hover {
+  background-color: royalblue;
 }
-.sameBtns:active{
+.sameBtns:active {
   text-decoration: none;
   color: seashell;
 }
-#register{
-   text-decoration: none;
-   color: seashell;
+#register {
+  text-decoration: none;
+  color: seashell;
 }
-#login{
-   text-decoration: none;
-   color: seashell;
+#login {
+  text-decoration: none;
+  color: seashell;
 }
-.loggedInUser{
-margin-left: 8px;
-cursor:progress;
-
-
+.loggedInUser {
+  margin-left: 8px;
+  cursor: progress;
 }
-.buttons{
+.buttons {
   margin-left: 10px;
 }
-
 </style>

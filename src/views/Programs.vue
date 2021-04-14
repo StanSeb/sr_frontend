@@ -52,13 +52,13 @@ export default {
     today(){
        this.$store.dispatch("fetchChannelsByID",  this.$route.params.id)
     },
-     DescriptionByProgramId(programId){ // anropar funktionen i store och skickar program-id
+     DescriptionByProgramId(programId){ // Anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchDescriptionByProgramId", programId);
-      this.$router.push("/description")//visar Description.view - view
+      this.$router.push("/description")// Visar Description.view - view
      },
-     ProgramBroadcast(programId){// anropar funktionen i store och skickar program-id
+     ProgramBroadcast(programId){// Anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchProgramBroadcasts", programId);
-      this.$router.push("/broadcast")//visar ProgramBroadcast.vue - view
+      this.$router.push("/broadcast")// Visar ProgramBroadcast.vue - view
      },     
   },
 }

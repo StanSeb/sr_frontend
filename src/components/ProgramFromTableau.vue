@@ -31,7 +31,7 @@ export default {
 
   data(){
     return {
-      show: false,
+      show: false, //Visa inte ikonen om en inte är inloggad
     }
   },
 
@@ -49,7 +49,7 @@ export default {
         user = await user.json();
         this.$store.commit("setLoggedInUser", user);
         if(user!=null){
-          this.show = true;
+          this.show = true; // Visar lägga till favoritikonen
         }
       } catch {
         console.log("Not logged in");
@@ -66,7 +66,7 @@ export default {
       };
 
       await fetch("http://localhost:3000/api/auth/favorites", {
-        // sparar favoriter i Databasen
+        // Sparar favoriter i Databasen
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(favoBody),
@@ -74,6 +74,7 @@ export default {
       alert("Du har lagt till en ny favorit.");
       this.$router.push("/favorites"); 
     },
+
     path() {
       this.$router.push("/programs/" + this.$route.params.id);
     },
@@ -84,7 +85,7 @@ export default {
     },
 
     ProgramBroadcast(programId) {
-      // anropar funktionen i store och skickar program-id
+      // Anropar funktionen i store och skickar program-id
       this.$store.dispatch("fetchProgramBroadcasts", programId);
       this.$router.push("/broadcast");
     },

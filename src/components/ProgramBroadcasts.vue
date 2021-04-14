@@ -1,6 +1,5 @@
 <template>
-  <div class="broadcast">
-     
+  <div class="broadcast">     
       <h1 v-if="getProgramBroadcasts.length===0"> Det finns ingenting att visa.</h1>
       <ul v-for="(broadcast, index) in getProgramBroadcasts" :key="index"> 
           <li>  
@@ -18,8 +17,7 @@
              </div>            
             <img class="icon" @click="addFavorite(broadcast.image, broadcast.title, broadcast.url)" src="../assets/heart-regular.svg" v-if="isLoggedIn"/>
            </div>         
-        </li>
-        
+        </li>        
       </ul>  
   </div>
 </template>
@@ -28,19 +26,21 @@
 export default {  
 name: "ProgramBroadcasts",
 
+// Sparar variabler för att använda i funktioner
 data(){
   return {
-    isLoggedIn: false
+    isLoggedIn: false // Lägga till favoriter ikonen visas inte - Ej inloggad
   }
 },
 
+// Hämtar om en användare är inloggad för att visa "Lägga till favorit" ikonen
 async mounted(){
   let user = await fetch("/api/auth/whoami");
       try {
         user = await user.json();
         this.$store.commit("setLoggedInUser", user);
         if(user!=null){
-          this.isLoggedIn = true;
+          this.isLoggedIn = true; // Lägga till favoriter visas då en är inloggad
         }
       } catch {
         console.log("Not logged in");
@@ -49,14 +49,13 @@ async mounted(){
 
 
 computed: {
+  // Hämtar sändningar från funktionen i store
   getProgramBroadcasts() {
-    let broadcast = this.$store.getters.getProgramBroadcasts;// hämtar sändningar från funktionen i store
-   
-   
-   return broadcast;
-  
+    let broadcast = this.$store.getters.getProgramBroadcasts;
+    return broadcast;  
   } 
   },
+
   methods: {
      async addFavorite(image, name, url) {
       let favoBody={

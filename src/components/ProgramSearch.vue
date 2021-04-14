@@ -1,6 +1,4 @@
 <template>
-  <!--Denna view är kopplade till webbsidan sökmotorn och visar 
-alla program som matchar den skrivna orden i sökfältet-->
    <div v-if="true" class="search-container">
     <h1 >Sökresultat: </h1>
     <h4 style="font-style: italic;">{{ getProgramsBySearch.length }} träffar</h4>
@@ -34,6 +32,7 @@ data(){
   }
 },
 
+// Hämtar om en användare är inloggad för att visa "Lägga till favorit" ikonen
 async mounted(){
 let user = await fetch("/api/auth/whoami");
       try {
@@ -54,27 +53,27 @@ computed: {
 },
 
  methods: {
-     DescriptionByProgramId(programId){// anropar funktionen i store och skickar program-id
+     DescriptionByProgramId(programId){// Anropar funktionen i store och skickar program-id
       this.$store.dispatch("fetchDescriptionByProgramId", programId);
-      this.$router.push("/description")//visar Description.view - view
+      this.$router.push("/description")// Visar Description.view - view
      },
-     ProgramBroadcast(programId){// anropar funktionen i store och skickar program-id
+     ProgramBroadcast(programId){// Anropar funktionen i store och skickar program-id
        this.$store.dispatch("fetchProgramBroadcasts", programId);
       this.$router.push("/broadcast")//visar ProgramBroadcast.vue - view
      },
-     async addFavorite(image, name, url) {// funktion för att skapa POST
+     async addFavorite(image, name, url) {// Funktion för att skapa POST
       let favoBody={
         name,
         image,
         url,
       }
-      await fetch('http://localhost:3000/api/auth/favorites',{// sparar favoriter i Databasen
+      await fetch('http://localhost:3000/api/auth/favorites',{// Sparar favoriter i Databasen
       method: 'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(favoBody),
     }) 
       alert("Du har lagt till en ny favorit!")
-      this.$router.push("/favorites")// Visar listan med favoriter som ligger i Favorites.vue
+      this.$router.push("/favorites")// Tar en till Favorite view
     }, 
   }
 }

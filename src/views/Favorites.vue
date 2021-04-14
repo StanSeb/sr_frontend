@@ -19,7 +19,7 @@ export default {
 
   computed: {
     getFavoritesList(){
-      return this.$store.getters.getFavoritesList // hämtar de favoriterna sparade i Databasen
+      return this.$store.getters.getFavoritesList // Hämtar de favoriterna sparade i Databasen
     }
   },
   mounted() {

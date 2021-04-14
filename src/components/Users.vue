@@ -25,10 +25,11 @@ export default {
   mounted() {
     this.$store.dispatch("fetchUsersList");
   },
+
   methods: {
     async addFriend(userId) {
       let friend = {
-        userId,      
+        userId, // Om en lägger in variabler i metoden behövs inte 'this.'     
       }
       
       let response = await fetch("http://localhost:3000/api/auth/friends", {
@@ -37,7 +38,7 @@ export default {
         body: JSON.stringify(friend),
         
       });
-          response= await response.text()
+          response= await response.text() // Om backend returnerar success - då körs commiten
         if(response=='success'){
           this.$store.commit('addFriend',userId)
         }

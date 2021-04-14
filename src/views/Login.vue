@@ -21,19 +21,21 @@
           required
         />
       </div>
-      <button type="submit" class="LoginBtn">Login</button>
+      <button type="submit" class="LoginBtn">Logga in</button>
     </form>
   </div>
 </template>
 
 <script>
 export default {
+  
   data() {
     return {
       email: "",
       password: "",
     };
   },
+
   mounted() {
     console.log("mounted Login");
   },
@@ -68,6 +70,20 @@ export default {
 </script>
 
 <style scoped>
+
+.loginContainer {
+  background-color: white;
+  width: 75%;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.loginContainer h1 {
+  padding-top: 20px;
+}
+
 .LoginBtn{
   
         display: inline-block;
@@ -77,8 +93,7 @@ export default {
         color:white;
         text-align: center;
         font-size: 14px;
-        padding: 3px;
-        width: 60px;
+        padding: 5px;
         -webkit-transition: all 0.3s;
         -moz-transition: all 0.3s;
         -o-transition: all 0.3s;

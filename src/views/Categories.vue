@@ -20,11 +20,8 @@
          </div>
         </div>        
         <div class="icons">
-          <!-- Lägg till favoriter. Skicka favorit-objektet till store-funktionen genom addFavorite()-->
           <img v-if="favoriteShow" class="icon" @click="addFavorite(program.programimage, program.name, program.programurl)" src="../assets/heart-regular.svg"/>
-          <!-- Visar Programmets info. Skicka program-id till store-funktionen genom DescriptionByProgramId()-->
           <img class="icon" @click="DescriptionByProgramId(program.id)" src="../assets/info-solid.svg"/>
-          <!-- Visar Programmets sändningar. Skicka program-id till store-funktionen genom ProgramBroadcast()-->
           <img class="icon" @click="ProgramBroadcast(program.id)" src="../assets/broadcast-tower-solid.svg"/>
         </div>        
       </li>
@@ -79,22 +76,21 @@ export default {
 
       this.activeName = category.name;
     },
-    DescriptionByProgramId(programId){ // anropar funktionen i store och skickar program-id
+    DescriptionByProgramId(programId){ // Anropar funktionen i store och skickar program-id
       this.$store.dispatch("fetchDescriptionByProgramId", programId);
-      this.$router.push("/description") //visar Description.view - view
+      this.$router.push("/description") // Visar Description.view - view
      },
-     ProgramBroadcast(programId){ // anropar funktionen i store och skickar program-id
+     ProgramBroadcast(programId){ // Anropar funktionen i store och skickar program-id
       this.$store.dispatch("fetchProgramBroadcasts", programId);
-      this.$router.push("/broadcast") //visar ProgramBroadcast.vue - view
+      this.$router.push("/broadcast") // Visar ProgramBroadcast.vue - view
      },
-     async addFavorite(image, name, url) { // funktion för att skapa POST
+     async addFavorite(image, name, url) { // Funktion för att skapa POST
       let favoBody={
         name,
         image,
         url,
       }
-      console.log(favoBody);
-      await fetch('http://localhost:3000/api/auth/favorites',{ // sparar favoriter i Databasen
+      await fetch('http://localhost:3000/api/auth/favorites',{ // Sparar favoriter i Databasen
       method: 'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(favoBody),

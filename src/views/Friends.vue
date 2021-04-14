@@ -79,7 +79,7 @@ export default {
         url = myFavorites[i].url;
         myFavoritesList+= "Program: " + name + " %0D%0ALink: " + url + " %0D%0A " + " %0D%0A";
       }
-      return myFavoritesList;
+      return myFavoritesList; // Returnerar datan som en sträng till 'mailto'-funktionen
     }
   },
 };
