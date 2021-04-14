@@ -5,13 +5,38 @@ module.exports = {
             '/rest': {
                 target: 'http://localhost:8080',
                 ws: true,
+                changeOrigin: true,
+                secure:false
+            },
+            '/api' : {
+                target: 'http://localhost:8080',
+                ws: true,
                 changeOrigin: true
             },
             '/auth' : {
                 target: 'http://localhost:8080',
                 ws: true,
-                changeOrigin: true
-            }
+                changeOrigin: true,
+                secure:false
+            },
+            '/login' : {
+                target: 'http://localhost:8080',
+                ws: true,
+                changeOrigin: true,
+                secure:false
+            },
+            '/logout' : {
+                target: 'http://localhost:8080',
+                ws: true,
+                changeOrigin: true,
+                secure:false
+            },
+            '/register' : {
+                target: 'http://localhost:8080',
+                ws: true,
+                changeOrigin: true,
+                secure:false
+            },
         }
     }
 }
